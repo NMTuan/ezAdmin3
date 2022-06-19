@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:11:30
- * @LastEditTime: 2022-06-17 17:59:03
+ * @LastEditTime: 2022-06-19 18:04:00
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\middleware\auth.global.ts
