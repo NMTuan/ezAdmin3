@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 15:05:02
- * @LastEditTime: 2022-06-19 17:30:52
+ * @LastEditTime: 2022-06-19 20:27:48
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\nuxt.config.ts
@@ -11,7 +11,7 @@ import { defineNuxtConfig } from 'nuxt'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    modules: ['@unocss/nuxt'],
+    modules: ['@pinia/nuxt', '@unocss/nuxt'],
     unocss: {
         // presets
         uno: true, // enabled `@unocss/preset-uno`

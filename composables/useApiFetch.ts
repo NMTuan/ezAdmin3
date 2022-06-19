@@ -2,18 +2,19 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-19 16:07:49
- * @LastEditTime: 2022-06-19 18:23:45
+ * @LastEditTime: 2022-06-19 20:53:19
  * @LastEditors: NMTuan
  * @Description: 异步处理配置
  * @FilePath: \ezAdmin3\composables\useApiFetch.ts
  */
+
 export default (url, options) => {
     const runtimeConfig = useRuntimeConfig()
+    const auth = useAuth()
 
-    console.log('xxx', useAuth())
     return useFetch(url, {
         headers: {
-            'xc-auth': useAuth().value.token
+            'xc-auth': auth.token
         },
         baseURL: runtimeConfig.public.apiBaseUrl,
         // 拦截器 https://github.com/unjs/ohmyfetch#%EF%B8%8F-interceptors

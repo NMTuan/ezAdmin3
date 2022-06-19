@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:10:21
- * @LastEditTime: 2022-06-19 18:22:47
+ * @LastEditTime: 2022-06-19 20:56:53
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\login.vue
@@ -34,7 +34,7 @@ const password = ref('QWE123!@#')
 
 const submit = async () => {
   console.log(email.value, password.value)
-  // 登录，拿token，存token，拿userInfo，正常则进入
+  // 登录，拿token，存token
   const authRes = await api.auth.singIn({
     email: email.value,
     password: password.value
@@ -45,12 +45,14 @@ const submit = async () => {
   }
   localStorage.setItem('token', authRes.data.value.token)
   auth.token = authRes.data.value.token
-  console.log('auth', auth)
+
+  // 拿userInfo，正常则进入
   const userRes = await api.auth.userInfo({
     project_id: 'p_hu46xavt6mza8i'
   })
-  console.log('userRes', userRes)
+  console.log('userRes', userRes.data.value)
 }
+
 const userInfo = () => {
   api.auth.userInfo({})
     .then(({ data }) => {
