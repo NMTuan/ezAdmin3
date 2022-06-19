@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 15:05:02
- * @LastEditTime: 2022-06-17 15:45:39
+ * @LastEditTime: 2022-06-19 17:30:52
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\nuxt.config.ts
@@ -21,5 +21,11 @@ export default defineNuxtConfig({
         // core options
         shortcuts: [],
         rules: []
+    },
+    // 全局配置，这里只配置生产环境，其他环境请配置 /.env 文件
+    runtimeConfig: {
+        public: {
+            apiBaseUrl: '' // 接口url
+        }
     }
 })
