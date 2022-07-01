@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-19 16:07:49
- * @LastEditTime: 2022-07-01 15:48:06
+ * @LastEditTime: 2022-07-01 17:51:02
  * @LastEditors: NMTuan
  * @Description: 异步处理配置
  * @FilePath: \ezAdmin3\composables\useApiFetch.ts
@@ -17,7 +17,7 @@ export default (url, options) => {
             // Log error
             console.log('[apiFetch request error]', request, error.message)
         },
-        async onResponseError({ request, response, options }) {
+        async onResponseError({ request, options, response }) {
             // Log error
             console.log(
                 '[apiFetch respone error]',
@@ -36,8 +36,20 @@ export default (url, options) => {
         }
     }
 
-    return useFetch(url, {
-        ...params,
-        ...options
-    })
+    // useFetch有参数缓存, 需换成useAsyncData
+    // return useFetch(url, {
+    //     ...params,
+    //     ...options
+    // })
+    return useAsyncData(
+        url,
+        () =>
+            $fetch(url, {
+                ...params,
+                ...options
+            }),
+        {
+            initialCache: false // 禁止参数缓存, 默认开启. 开启时, 相同参数的请求不会发第二次.
+        }
+    )
 }

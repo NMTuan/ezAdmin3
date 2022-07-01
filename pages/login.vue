@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:10:21
- * @LastEditTime: 2022-07-01 16:49:14
+ * @LastEditTime: 2022-07-01 17:37:48
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\login.vue
@@ -19,13 +19,14 @@
     <div>{{ email }}</div>
     <div>{{ password }}</div>
     <pre>{{ data }}</pre>
+    <pre>{{ auth }}</pre>
   </div>
 </template>
 
 <script setup>
 
 const api = useApi();
-// const auth = useAuth();
+const auth = useAuth();
 
 const email = ref("test@test.com");
 const password = ref("QWE123!@#");
@@ -35,12 +36,11 @@ const submit = async () => {
   console.log(email.value, password.value);
 
   // 登录，拿token，存token
-  const { data: authRes } = await api.auth.login({
+  const { data: authRes } = await auth.login({
     email: email.value,
     password: password.value,
   });
   data.value = toRef(authRes, 'data')
-  console.log(isRef(authRes), isProxy(authRes), isReactive(authRes))
   console.log(unref(authRes).data.access_token)
   // if (!authRes.data.value?.token) {
   //   // 登录失败
