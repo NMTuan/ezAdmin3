@@ -2,21 +2,16 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-19 16:07:49
- * @LastEditTime: 2022-06-19 20:53:19
+ * @LastEditTime: 2022-07-01 15:48:06
  * @LastEditors: NMTuan
  * @Description: 异步处理配置
  * @FilePath: \ezAdmin3\composables\useApiFetch.ts
  */
 
 export default (url, options) => {
-    const runtimeConfig = useRuntimeConfig()
-    const auth = useAuth()
-
-    return useFetch(url, {
-        headers: {
-            'xc-auth': auth.token
-        },
-        baseURL: runtimeConfig.public.apiBaseUrl,
+    const params = {
+        headers: {},
+        baseURL: '/api',
         // 拦截器 https://github.com/unjs/ohmyfetch#%EF%B8%8F-interceptors
         async onRequestError({ request, options, error }) {
             // Log error
@@ -29,7 +24,20 @@ export default (url, options) => {
                 response.status,
                 response._data
             )
-        },
+        }
+    }
+
+    // 限定该请求的header中不带token
+    if (!options.noAuth) {
+        delete options.noAuth
+        params.headers = {
+            // TODO 使用真实Token
+            Authorization: `Bearer 123`
+        }
+    }
+
+    return useFetch(url, {
+        ...params,
         ...options
     })
 }
