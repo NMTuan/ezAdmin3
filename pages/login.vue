@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:10:21
- * @LastEditTime: 2022-07-01 17:37:48
+ * @LastEditTime: 2022-07-03 17:19:03
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\login.vue
@@ -19,13 +19,12 @@
     <div>{{ email }}</div>
     <div>{{ password }}</div>
     <pre>{{ data }}</pre>
-    <pre>{{ auth }}</pre>
+    <div>{{auth.access_token}}</div>
   </div>
 </template>
 
 <script setup>
 
-const api = useApi();
 const auth = useAuth();
 
 const email = ref("test@test.com");
