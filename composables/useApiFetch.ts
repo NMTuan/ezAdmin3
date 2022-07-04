@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-19 16:07:49
- * @LastEditTime: 2022-07-04 14:56:53
+ * @LastEditTime: 2022-07-04 17:04:48
  * @LastEditors: NMTuan
  * @Description: 异步处理配置
  * @FilePath: \ezAdmin3\composables\useApiFetch.ts
@@ -12,7 +12,7 @@ export default async (url, options) => {
     const auth = useAuth()
     const params = {
         headers: {},
-        baseURL: '/api',
+        baseURL: 'http://192.168.192.110:8055',
         // 拦截器 https://github.com/unjs/ohmyfetch#%EF%B8%8F-interceptors
         async onRequestError({ request, options, error }) {
             // Log error

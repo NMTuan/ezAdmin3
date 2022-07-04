@@ -2,11 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-01 11:41:10
- * @LastEditTime: 2022-07-01 13:49:59
+ * @LastEditTime: 2022-07-04 17:05:56
  * @LastEditors: NMTuan
  * @Description:  api代理 https://github.com/nuxt/framework/discussions/4343
- * @FilePath: \ezAdmin3\server\middleware\api-proxy.js
+ * @FilePath: \ezAdmin3\server\middleware\api-proxy.js.bak
  */
+
+ // 这个地方会影响到异步请求, 暂时不做代理了.
+ // 页面直接异步, 会阻塞掉页面. 一直没响应.
 import { createProxyMiddleware } from 'http-proxy-middleware'
 const runtimeConfig = useRuntimeConfig()
 
@@ -19,9 +22,9 @@ const apiProxyMiddleware = createProxyMiddleware('/api/**', {
     }
 })
 
-export default async (req, res) => {
+export default (req, res) => {
     // Workaround for h3 not awaiting next.
-    await new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => {
         const next = (err) => {
             if (err) {
                 reject(err)
@@ -29,6 +32,6 @@ export default async (req, res) => {
                 resolve()
             }
         }
-        apiProxyMiddleware(req, res, next)
+        return apiProxyMiddleware(req, res, next)
     })
 }

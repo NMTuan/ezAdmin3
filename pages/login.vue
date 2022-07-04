@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:10:21
- * @LastEditTime: 2022-07-04 11:51:28
+ * @LastEditTime: 2022-07-04 17:08:25
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\login.vue
@@ -38,7 +38,7 @@ const submit = async () => {
   console.log(email.value, password.value);
 
   // 登录，拿token，存token
-  const { data: authRes } = await auth.getMe({
+  const { data: authRes } = await auth.login({
     email: email.value,
     password: password.value,
   });

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:12:38
- * @LastEditTime: 2022-07-04 11:51:01
+ * @LastEditTime: 2022-07-04 17:19:21
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\composables\useAuth.ts
@@ -35,11 +35,11 @@ export default defineStore('auth', {
         // 登录
         login(payload = {}) {
             return new Promise((resolve, reject) => {
-                return api.auth
+                api.auth
                     .login(payload)
                     .then((res) => {
-                        console.log(1111111111, res.pending.value)
                         if (unref(res.error) !== null) {
+                            reject(res)
                             return
                         }
                         const { data } = unref(res.data)
@@ -57,25 +57,17 @@ export default defineStore('auth', {
         // 获取当前用户信息
         getMe() {
             return new Promise((resolve, reject) => {
-                return api.users
+                api.users
                     .me()
                     .then((res) => {
-                        console.log(2222222, res.pending.value)
-                        // if (unref(res.error) !== null) {
-                        //     return
-                        // }
-
-                        // console.log(res.error.value)
-                        // if (data.errors) {
-                        //     reject(data.errors)
-                        // } else {
-                        //     this.me = data.data
-                        //     resolve(res)
-                        // }
+                        if (unref(res.error) !== null) {
+                            reject(res)
+                            return
+                        }
+                        this.me = res.data.data
                         resolve(res)
                     })
                     .catch((error) => {
-                        console.log(22)
                         reject(error)
                     })
             })
