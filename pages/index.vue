@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 15:07:40
- * @LastEditTime: 2022-06-19 20:56:25
+ * @LastEditTime: 2022-07-04 10:47:52
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\index.vue
@@ -11,7 +11,11 @@
   <div>
     <div class="text-center bg-red-400 py-10">index</div>
     <NuxtLink :to="{ name: 'login' }">[login]</NuxtLink>
+    <NuxtLink :to="{ name: 'aa' }">[aa]</NuxtLink>
+    <pre>{{ auth.isLogged }}</pre>
+    <pre>{{ auth.me }}</pre>
   </div>
 </template>
 <script setup>
+const auth = useAuth()
 </script>

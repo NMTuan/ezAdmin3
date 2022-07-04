@@ -2,13 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-19 16:07:49
- * @LastEditTime: 2022-07-01 17:51:02
+ * @LastEditTime: 2022-07-04 14:56:53
  * @LastEditors: NMTuan
  * @Description: 异步处理配置
  * @FilePath: \ezAdmin3\composables\useApiFetch.ts
  */
 
-export default (url, options) => {
+export default async (url, options) => {
+    const auth = useAuth()
     const params = {
         headers: {},
         baseURL: '/api',
@@ -17,7 +18,7 @@ export default (url, options) => {
             // Log error
             console.log('[apiFetch request error]', request, error.message)
         },
-        async onResponseError({ request, options, response }) {
+        async onResponseError({ request, response, options }) {
             // Log error
             console.log(
                 '[apiFetch respone error]',
@@ -28,11 +29,10 @@ export default (url, options) => {
     }
 
     // 限定该请求的header中不带token
-    if (!options.noAuth) {
+    if (!options.noAuth && auth.access_token) {
         delete options.noAuth
         params.headers = {
-            // TODO 使用真实Token
-            Authorization: `Bearer 123`
+            Authorization: `Bearer ${auth.access_token}`
         }
     }
 

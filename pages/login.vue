@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:10:21
- * @LastEditTime: 2022-07-03 17:19:03
+ * @LastEditTime: 2022-07-04 11:51:28
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\login.vue
@@ -19,7 +19,10 @@
     <div>{{ email }}</div>
     <div>{{ password }}</div>
     <pre>{{ data }}</pre>
-    <div>{{auth.access_token}}</div>
+    <div>{{ auth.access_token }}</div>
+    <NuxtLink :to="{ name: 'index' }">[login]</NuxtLink>
+    <NuxtLink :to="{ name: 'aa' }">[aa]</NuxtLink>
+
   </div>
 </template>
 
@@ -35,7 +38,7 @@ const submit = async () => {
   console.log(email.value, password.value);
 
   // 登录，拿token，存token
-  const { data: authRes } = await auth.login({
+  const { data: authRes } = await auth.getMe({
     email: email.value,
     password: password.value,
   });

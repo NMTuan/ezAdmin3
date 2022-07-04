@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:12:38
- * @LastEditTime: 2022-07-03 21:45:45
+ * @LastEditTime: 2022-07-04 11:51:01
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\composables\useAuth.ts
@@ -12,17 +12,23 @@ import { defineStore } from 'pinia'
 const api = useApi()
 
 interface UseAuth {
-    isLogged: boolean
     access_token: string
     refresh_token: string
+    me: object
 }
 
 export default defineStore('auth', {
     state: (): UseAuth => {
         return {
-            isLogged: false,
-            access_token: useCookie('access_token')?.value || '',
-            refresh_token: useCookie('refresh_token')?.value || ''
+            access_token: '',
+            refresh_token: '',
+            me: {}
+        }
+    },
+    getters: {
+        // 已登录?
+        isLogged(state) {
+            return Object.keys(state.me).length > 0
         }
     },
     actions: {
@@ -32,6 +38,7 @@ export default defineStore('auth', {
                 return api.auth
                     .login(payload)
                     .then((res) => {
+                        console.log(1111111111, res.pending.value)
                         if (unref(res.error) !== null) {
                             return
                         }
@@ -40,10 +47,35 @@ export default defineStore('auth', {
                         useCookie('refresh_token').value = data.refresh_token
                         this.access_token = data.access_token
                         this.refresh_token = data.refresh_token
-                        console.log(this)
                         resolve(res)
                     })
                     .catch((error) => {
+                        reject(error)
+                    })
+            })
+        },
+        // 获取当前用户信息
+        getMe() {
+            return new Promise((resolve, reject) => {
+                return api.users
+                    .me()
+                    .then((res) => {
+                        console.log(2222222, res.pending.value)
+                        // if (unref(res.error) !== null) {
+                        //     return
+                        // }
+
+                        // console.log(res.error.value)
+                        // if (data.errors) {
+                        //     reject(data.errors)
+                        // } else {
+                        //     this.me = data.data
+                        //     resolve(res)
+                        // }
+                        resolve(res)
+                    })
+                    .catch((error) => {
+                        console.log(22)
                         reject(error)
                     })
             })
