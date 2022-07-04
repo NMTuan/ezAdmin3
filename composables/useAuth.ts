@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:12:38
- * @LastEditTime: 2022-07-04 17:31:25
+ * @LastEditTime: 2022-07-04 21:45:58
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\composables\useAuth.ts
@@ -66,6 +66,26 @@ export default defineStore('auth', {
                             return
                         }
                         this.me = unref(res.data).data
+                        resolve(res)
+                    })
+                    .catch((error) => {
+                        reject(error)
+                    })
+            })
+        },
+        logout() {
+            return new Promise((resolve, reject) => {
+                api.auth
+                    .logout({
+                        refresh_token: this.refresh_token
+                    })
+                    .then((res) => {
+                        if (unref(res.error) !== null) {
+                            // TODO 清除本地内容。跳转页面
+                            reject(res)
+                            return
+                        }
+                        // this.me = unref(res.data).data
                         resolve(res)
                     })
                     .catch((error) => {

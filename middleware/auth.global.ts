@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:11:30
- * @LastEditTime: 2022-07-04 20:38:23
+ * @LastEditTime: 2022-07-04 20:52:46
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\middleware\auth.global.ts
@@ -54,6 +54,5 @@ export default defineNuxtRouteMiddleware((to, from) => {
                 }
                 navigateTo({ name: 'login' })
             }
-            return
         })
 })

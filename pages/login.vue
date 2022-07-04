@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:10:21
- * @LastEditTime: 2022-07-04 17:08:25
+ * @LastEditTime: 2022-07-04 20:59:05
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\login.vue
@@ -18,8 +18,6 @@
     </div>
     <div>{{ email }}</div>
     <div>{{ password }}</div>
-    <pre>{{ data }}</pre>
-    <div>{{ auth.access_token }}</div>
     <NuxtLink :to="{ name: 'index' }">[login]</NuxtLink>
     <NuxtLink :to="{ name: 'aa' }">[aa]</NuxtLink>
 
@@ -35,32 +33,19 @@ const password = ref("QWE123!@#");
 let data = ref({})
 
 const submit = async () => {
-  console.log(email.value, password.value);
-
   // 登录，拿token，存token
-  const { data: authRes } = await auth.login({
+  auth.login({
     email: email.value,
     password: password.value,
-  });
-  data.value = toRef(authRes, 'data')
-  console.log(unref(authRes).data.access_token)
-  // if (!authRes.data.value?.token) {
-  //   // 登录失败
-  //   return;
-  // }
-  // localStorage.setItem("token", authRes.data.value.token);
-  // auth.token = authRes.data.value.token;
+  })
+    .then(() => {
+      return auth.getMe()
+    })
+    .then(() => {
+      alert('登录成功')
+      navigateTo({ name: 'index' })
+    })
 
-  // // 拿userInfo，正常则进入
-  // const userRes = await api.auth.userInfo({
-  //   project_id: "p_hu46xavt6mza8i",
-  // });
-  // console.log("userRes", toRaw(userRes.data.value));
 };
 
-// const userInfo = () => {
-//   api.auth.userInfo({}).then(({ data }) => {
-//     console.log("res", toRaw(data.value));
-//   });
-// };
 </script>
