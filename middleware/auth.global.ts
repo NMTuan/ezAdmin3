@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:11:30
- * @LastEditTime: 2022-07-04 17:58:06
+ * @LastEditTime: 2022-07-04 20:38:23
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\middleware\auth.global.ts
@@ -17,10 +17,9 @@ export default defineNuxtRouteMiddleware((to, from) => {
     // 如果已登录, 则不再处理后续逻辑
     if (auth.isLogged) {
         // 如果在登录页, 则跳走.
-        // TODO 这里似乎不生效
         if (to.name === 'login') {
             console.log('xxxx')
-            navigateTo({ name: 'index' })
+            return navigateTo({ name: 'index' })
         }
         return
     }
@@ -34,8 +33,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
         // if (process.client) {
         //     alert('请先登录')
         // }
-        navigateTo({ name: 'login' })
-        return
+        return navigateTo({ name: 'login' })
     }
 
     // 如果拿到token, 去请求当前用户信息.
@@ -58,18 +56,4 @@ export default defineNuxtRouteMiddleware((to, from) => {
             }
             return
         })
-
-    // 判断是否位登录页，是则不处理。（理论上说，进入登录页也要判断登录状态，如果已登录， 则跳走。）
-    // 判断userInfo，正常则不处理。
-    // 判断accessToken，存在则请求userInfo。不存在提示并跳转登录页。
-    // 判断serInfo， 正常则不处理，不正常提示并跳转登录页。
-
-    // 判断token是否存在.
-    // 不存在, 并且当前页不是/login, 则跳转到/login
-    // 存在,
-    // 若当前为/login, 则跳转首页
-    // 判断用户权限数据
-    // 不存在, 异步获取用户权限数据
-    // 判断当前路由是否有权访问
-    // 无权, 则渲染无权ui
 })
