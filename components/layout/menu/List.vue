@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 17:12:07
- * @LastEditTime: 2022-07-05 19:51:59
+ * @LastEditTime: 2022-07-05 20:12:48
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\menu\List.vue
@@ -14,7 +14,10 @@
 </template>
 <script setup>
 const props = defineProps({
-    pages: []
+    pages: {
+        type: Array,
+        default: () => []
+    }
 })
 
 // 排序，sort值越小排名越靠前，未设定的统统往后排
