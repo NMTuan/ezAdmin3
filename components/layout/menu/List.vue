@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 17:12:07
- * @LastEditTime: 2022-07-05 17:34:36
+ * @LastEditTime: 2022-07-05 19:51:59
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\menu\List.vue
@@ -15,6 +15,15 @@
 <script setup>
 const props = defineProps({
     pages: []
+})
+
+// 排序，sort值越小排名越靠前，未设定的统统往后排
+const sortedPages = props.pages.sort((a, b) => {
+    let x = a.sort || 10000
+    let y = b.sort || 10000
+    x = typeof x === 'string' ? Number(x) : x
+    y = typeof y === 'string' ? Number(y) : y
+    return x - y
 })
 
 </script>

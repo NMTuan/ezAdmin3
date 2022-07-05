@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 15:07:40
- * @LastEditTime: 2022-07-05 11:41:38
+ * @LastEditTime: 2022-07-05 19:49:41
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\index.vue
@@ -23,7 +23,8 @@ const logout = () => {
 <script>
 export default {
   page: {
-    name: '首页'
+    name: '首页',
+    sort: 100
   }
 }
 

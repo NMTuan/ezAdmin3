@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 11:14:27
- * @LastEditTime: 2022-07-05 17:30:23
+ * @LastEditTime: 2022-07-05 19:53:14
  * @LastEditors: NMTuan
  * @Description: 读取所有页面中的配置. 供菜单/权限使用.
  * @FilePath: \ezAdmin3\plugins\pages.ts
@@ -12,18 +12,12 @@
  * disabledCache    [Boolean] TODO: 是否禁止keep-alive, 注意如果vue组件定义了name, 则无法被缓存.
  * hideMenu         [Boolean] TODO: 不在侧边显示
  * highLightMenu    []        TODO: 手工指定高亮哪个菜单项
- * sort             [number]  TODO: 排序
+ * sort             [number]  排序：值越小排名越靠前，未设定的统统往后排
  */
 
 export default defineNuxtPlugin((nuxtApp) => {
-    console.log('page plugins')
     const files = import.meta.globEager('@/pages/**/*.vue')
     const pages = Object.keys(files).reduce((total, key) => {
-        // if (key === '../pages/bb.vue') {
-        //     console.log(key)
-        //     console.log(files[key].default)
-        // console.log(JSON.stringify(files[key].default, null, 2))
-        // }
         const fileName = key.replace(/^\.\.\/pages\/(.*)\.\w+$/, '$1')
         if (files[key].default.page) {
             total.push({
@@ -39,11 +33,10 @@ export default defineNuxtPlugin((nuxtApp) => {
         }
         return total
     }, [])
-    // console.log(JSON.stringify(pages, null, 2))
 
     return {
         provide: {
-            pages
+            pages // 以$pages暴露给全局
         }
     }
 })

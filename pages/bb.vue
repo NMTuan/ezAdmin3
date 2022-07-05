@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 10:47:26
- * @LastEditTime: 2022-07-05 11:34:09
+ * @LastEditTime: 2022-07-05 19:51:10
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\bb.vue
@@ -25,7 +25,8 @@ console.log('bb', route.meta.title)
 <script>
 export default {
     page: {
-        name: 'bb页面'
+        name: 'bb页面',
+        sort: 200
     }
 }
 
