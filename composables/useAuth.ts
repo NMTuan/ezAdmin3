@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:12:38
- * @LastEditTime: 2022-07-05 09:27:53
+ * @LastEditTime: 2022-07-05 09:58:14
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\composables\useAuth.ts
@@ -81,11 +81,17 @@ export default defineStore('auth', {
                     })
                     .then((res) => {
                         if (unref(res.error) !== null) {
-                            // TODO 清除本地内容。跳转页面
                             reject(res)
                             return
                         }
-                        // this.me = unref(res.data).data
+                        // 清除本地内容
+                        useCookie('access_token').value = ''
+                        useCookie('refresh_token').value = ''
+                        this.access_token = ''
+                        this.refresh_token = ''
+                        this.me = {}
+                        alert('已退出')
+                        navigateTo({ name: 'login' })
                         resolve(res)
                     })
                     .catch((error) => {
