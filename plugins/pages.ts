@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 11:14:27
- * @LastEditTime: 2022-07-05 14:36:08
+ * @LastEditTime: 2022-07-05 17:30:23
  * @LastEditors: NMTuan
  * @Description: 读取所有页面中的配置. 供菜单/权限使用.
  * @FilePath: \ezAdmin3\plugins\pages.ts
@@ -28,17 +28,18 @@ export default defineNuxtPlugin((nuxtApp) => {
         if (files[key].default.page) {
             total.push({
                 ...files[key].default.page,
-                fileName,
-                dynamicRoute: fileName.includes('['),
-                routeName: fileName
+                fileName, // 文件名称, 没有.vue
+                dynamicRoute: fileName.includes('['), //是否动态路由, 动态路由不在菜单张显示.
+                routeName: fileName // 路由名称
                     .replace(/\//gi, '-')
                     .replace(/\[/gi, '')
-                    .replace(/\]/gi, '')
+                    .replace(/\]/gi, ''),
+                level: fileName.split('/').length // 层级
             })
         }
         return total
     }, [])
-    console.log(JSON.stringify(pages, null, 2))
+    // console.log(JSON.stringify(pages, null, 2))
 
     return {
         provide: {
