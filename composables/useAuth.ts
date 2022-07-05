@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:12:38
- * @LastEditTime: 2022-07-04 21:45:58
+ * @LastEditTime: 2022-07-05 09:27:53
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\composables\useAuth.ts
@@ -28,7 +28,7 @@ export default defineStore('auth', {
     getters: {
         // 已登录?
         isLogged(state) {
-            console.log('me', JSON.stringify(state.me, null, 2))
+            // console.log('me', JSON.stringify(state.me, null, 2))
             return state.me ? Object.keys(state.me).length > 0 : false
         }
     },
