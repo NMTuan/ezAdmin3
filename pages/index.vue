@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 15:07:40
- * @LastEditTime: 2022-07-05 09:59:55
+ * @LastEditTime: 2022-07-05 11:41:38
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\index.vue
@@ -10,8 +10,6 @@
 <template>
   <div>
     <div class="text-center bg-red-400 py-10">index</div>
-    <NuxtLink :to="{ name: 'login' }">[login]</NuxtLink>
-    <NuxtLink :to="{ name: 'aa' }">[aa]</NuxtLink>
     <pre>{{ auth.isLogged }}</pre>
     <button @click="logout">登出</button>
   </div>
@@ -21,4 +19,12 @@ const auth = useAuth()
 const logout = () => {
   auth.logout()
 }
+</script>
+<script>
+export default {
+  page: {
+    name: '首页'
+  }
+}
+
 </script>

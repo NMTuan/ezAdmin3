@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:11:30
- * @LastEditTime: 2022-07-05 09:48:24
+ * @LastEditTime: 2022-07-05 10:15:34
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\middleware\auth.global.ts
@@ -47,7 +47,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
                 }
             })
             .catch((error) => {
-                console.log('1', error)
                 // 如果拿不到当前用户信息, 并且非登录页, 则提示并跳转登录页.
                 if (to.name !== 'login') {
                     if (process.client) {

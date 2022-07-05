@@ -18,9 +18,6 @@
     </div>
     <div>{{ email }}</div>
     <div>{{ password }}</div>
-    <NuxtLink :to="{ name: 'index' }">[login]</NuxtLink>
-    <NuxtLink :to="{ name: 'aa' }">[aa]</NuxtLink>
-
   </div>
 </template>
 
