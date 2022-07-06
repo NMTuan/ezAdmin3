@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 11:14:27
- * @LastEditTime: 2022-07-05 19:53:14
+ * @LastEditTime: 2022-07-06 10:54:25
  * @LastEditors: NMTuan
  * @Description: 读取所有页面中的配置. 供菜单/权限使用.
  * @FilePath: \ezAdmin3\plugins\pages.ts
@@ -27,7 +27,8 @@ export default defineNuxtPlugin((nuxtApp) => {
                 routeName: fileName // 路由名称
                     .replace(/\//gi, '-')
                     .replace(/\[/gi, '')
-                    .replace(/\]/gi, ''),
+                    .replace(/\]/gi, '')
+                    .replace('-index', ''),
                 level: fileName.split('/').length // 层级
             })
         }

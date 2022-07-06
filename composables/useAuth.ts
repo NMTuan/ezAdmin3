@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:12:38
- * @LastEditTime: 2022-07-06 09:47:36
+ * @LastEditTime: 2022-07-06 14:44:26
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\composables\useAuth.ts
@@ -12,6 +12,7 @@ import { defineStore } from 'pinia'
 const api = useApi()
 
 interface UseAuth {
+    loaded: boolean
     access_token: string
     refresh_token: string
     me: object
@@ -20,6 +21,7 @@ interface UseAuth {
 export default defineStore('auth', {
     state: (): UseAuth => {
         return {
+            loaded: false,
             access_token: '',
             refresh_token: '',
             me: {}
@@ -32,18 +34,18 @@ export default defineStore('auth', {
             return state.me ? Object.keys(state.me).length > 0 : false
         },
         // 有权限的页面
-        authorizedPages() {
+        authorizedPages(state) {
             const { $pages } = useNuxtApp()
             // 异常 返回空数组
-            if (!this.me?.role?.routes) {
+            if (!state.me?.role?.routes) {
                 return []
             }
             // 管理员
-            if (this.me.role.routes.includes('*')) {
+            if (state.me.role.routes.includes('*')) {
                 return $pages
             }
             // 非管理员
-            return this.me.role.routes.reduce((total, item) => {
+            return state.me.role.routes.reduce((total, item) => {
                 const find = $pages.find((page) => page.fileName === item)
                 if (find) {
                     total.push(find)
@@ -81,6 +83,7 @@ export default defineStore('auth', {
                 api.users
                     .me()
                     .then((res) => {
+                        this.loaded = true
                         if (unref(res.error) !== null) {
                             reject(res)
                             return
@@ -89,6 +92,7 @@ export default defineStore('auth', {
                         resolve(res)
                     })
                     .catch((error) => {
+                        this.loaded = true
                         reject(error)
                     })
             })
