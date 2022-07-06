@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 13:48:16
- * @LastEditTime: 2022-07-05 17:51:08
+ * @LastEditTime: 2022-07-06 10:03:36
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\menu\Item.vue
@@ -21,13 +21,13 @@
     </div>
 </template>
 <script setup>
-const { $pages } = useNuxtApp()
+const auth = useAuth()
 const props = defineProps({
     page: {}
 })
 
 const reg = new RegExp(`^${props.page.fileName}/`)  // 子页面以父页面的文件名开头.
-const children = $pages.filter((page) => {
+const children = auth.authorizedPages.filter((page) => {
     return page.level === props.page.level + 1 && page.dynamicRoute === false && reg.test(page.fileName)
 })
 </script>
