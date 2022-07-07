@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:11:30
- * @LastEditTime: 2022-07-05 10:15:34
+ * @LastEditTime: 2022-07-07 11:42:20
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\middleware\auth.global.ts
@@ -20,6 +20,14 @@ export default defineNuxtRouteMiddleware((to, from) => {
         if (to.name === 'login') {
             console.log('xxxx')
             return navigateTo({ name: 'index' })
+        }
+        // 判断前进的页面是否有权限, 这里是前端路由跳转时判断.
+        const exist = auth.authorizedPages.find(
+            (item) => item.routeName === to.name
+        )
+        if (exist === undefined) {
+            alert('无权访问')
+            return abortNavigation()
         }
         return
     }
@@ -39,11 +47,19 @@ export default defineNuxtRouteMiddleware((to, from) => {
     // 如果拿到token, 去请求当前用户信息.
     if (process.client) {
         auth.getMe()
-            .then((res) => {
+            .then((): any => {
                 //如果拿到用户信息, 并且是登录页, 则跳转到首页.
                 // TODO 以后要记录来源, 跳转到来源页面
                 if (to.name === 'login') {
                     navigateTo({ name: 'index' })
+                }
+                // 判断前进的页面是否有权限, 这里是首次访问时判断.
+                const exist = auth.authorizedPages.find(
+                    (item) => item.routeName === to.name
+                )
+                if (exist === undefined) {
+                    alert('无权访问')
+                    return navigateTo({ name: 'index' })
                 }
             })
             .catch((error) => {
