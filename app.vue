@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 19:44:31
- * @LastEditTime: 2022-07-06 14:42:07
+ * @LastEditTime: 2022-07-08 10:25:36
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\app.vue
@@ -17,6 +17,7 @@
             <NuxtLink :to="{ name: 'bb' }">[/bb]</NuxtLink>
             <NuxtLink :to="{ name: 'bb-id', params: { id: 1 } }">[/bb/1]</NuxtLink>
             <NuxtLink :to="{ name: 'bb-id', params: { id: 2 } }">[/bb/2]</NuxtLink>
+            <NuxtLink :to="{ name: 'testaa' }">[/testaa]</NuxtLink>
             <hr>
             <NuxtPage />
             <div class="flex">

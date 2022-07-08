@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 15:05:02
- * @LastEditTime: 2022-06-19 20:27:48
+ * @LastEditTime: 2022-07-08 10:22:30
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\nuxt.config.ts
@@ -25,7 +25,8 @@ export default defineNuxtConfig({
     // 全局配置，这里只配置生产环境，其他环境请配置 /.env 文件
     runtimeConfig: {
         public: {
-            apiBaseUrl: '' // 接口url
+            apiBaseUrl: '', // 接口url
+            loginFreeList: [] // 免登录页面 这里填的是路由名称routeName 需要注意, 这里是标准json格式, 需要双引号
         }
     }
 })
