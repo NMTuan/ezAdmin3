@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 19:44:31
- * @LastEditTime: 2022-07-08 16:32:55
+ * @LastEditTime: 2022-07-09 15:46:12
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\app.vue
@@ -36,6 +36,10 @@
 const auth = useAuth()
 </script>
 <style lang="scss">
+* {
+    box-sizing: border-box;
+}
+
 html,
 body,
 #__nuxt {
