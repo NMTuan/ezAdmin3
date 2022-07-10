@@ -2,21 +2,22 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 13:48:16
- * @LastEditTime: 2022-07-10 17:04:42
+ * @LastEditTime: 2022-07-10 19:37:10
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\menu\Item.vue
 -->
 <template>
-    <div class="">
+    <div :class="{
+        'bg-neutral-400/8': !collapsed
+    }">
         <!-- 没有子菜单 -->
         <template v-if="children.length === 0">
             <!-- 高亮状态 -->
-            <div v-if="route.name === page.routeName" :class="`pl-${page.level * 4}`" class="flex items-center block py-4 pr-4 bg-sky-500 text-white transition-all
-            hover:op-85
-            ">
+            <div v-if="route.name === page.routeName" :class="`pl-${page.level * 4}`"
+                class="flex items-center block py-4 pr-4 bg-sky-500 text-white">
                 <div v-if="page.icon" :class="page.icon" class="mr-2"></div>
-                <div v-if="page.level !== 1" class="i-ri-arrow-drop-right-fill mr-2 text-white"></div>
+                <div v-if="page.level !== 1" class="i-ri-subtract-fill text-xs mr-2 text-white"></div>
                 <div class="truncate">{{ page.name }}</div>
             </div>
             <!-- 默认状态 -->
@@ -24,7 +25,7 @@
             hover:bg-neutral-200
             " :to="{ name: page.routeName }">
                 <div v-if="page.icon" :class="page.icon" class="mr-2"></div>
-                <div v-if="page.level !== 1" class="i-ri-arrow-drop-right-fill mr-2 text-neutral-400"></div>
+                <div v-if="page.level !== 1" class="i-ri-subtract-fill text-xs mr-2 text-neutral-400"></div>
                 <div class="truncate">{{ page.name }}</div>
             </NuxtLink>
         </template>
@@ -37,11 +38,12 @@
                 <div v-if="collapsed === true" class="i-ri-arrow-down-s-line"></div>
                 <div v-else class="i-ri-arrow-up-s-line"></div>
             </div>
+            <!-- 子菜单 -->
             <div class="overflow-hidden" :class="{
-                'h-0': collapsed === true,
-                'h-auto': collapsed !== true
+                'hidden': collapsed,
+                'block': !collapsed
             }">
-                <LayoutMenuList class="bg-neutral-400/8" :pages="children" />
+                <LayoutMenuList :pages="children" />
             </div>
         </template>
     </div>
