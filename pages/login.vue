@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:10:21
- * @LastEditTime: 2022-07-09 15:44:45
+ * @LastEditTime: 2022-07-10 09:19:37
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\login.vue
@@ -34,29 +34,17 @@
     </div>
   </div>
 </template>
-
 <script setup>
-import trianglify from '@victorioberra/trianglify-browser'
+definePageMeta({
+  layout: 'page'
+})
 
 const config = useRuntimeConfig()
 const auth = useAuth()
+const backgroundImage = useBackgroundImage()
 
 const email = ref('test@test.com') //
 const password = ref('QWE123!@#')  //
-
-// 背景图
-const x = 50
-const pattern = trianglify({
-  cellSize: Math.random() * x + x,
-  width: 1920,
-  height: 1080,
-  variance: 50,
-  xColors: ['#fafafa', '#f5f5f5', '#e5e5e5'],
-  yColors: ['#fafafa', '#f5f5f5', '#e5e5e5'],
-  seed: null
-}).toCanvas()
-const triangle = pattern.toDataURL('image/png')
-const backgroundImage = `url('${triangle}')`
 
 // 表单提交
 const submit = () => {

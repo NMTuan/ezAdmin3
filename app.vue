@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 19:44:31
- * @LastEditTime: 2022-07-09 15:46:12
+ * @LastEditTime: 2022-07-10 16:16:19
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\app.vue
@@ -19,12 +19,9 @@
             <NuxtLink :to="{ name: 'bb-id', params: { id: 2 } }">[/bb/2]</NuxtLink>
             <NuxtLink :to="{ name: 'testaa' }">[/testaa]</NuxtLink>
             <hr> -->
-            <NuxtPage />
-            <!-- <div class="flex">
-                <div class="flex-1">
-                    <LayoutMenu />
-                </div>
-            </div> -->
+            <NuxtLayout>
+                <NuxtPage />
+            </NuxtLayout>
 
         </template>
         <template v-else>
@@ -43,6 +40,6 @@ const auth = useAuth()
 html,
 body,
 #__nuxt {
-    @apply bg-white h-full;
+    @apply bg-neutral-50 h-full;
 }
 </style>

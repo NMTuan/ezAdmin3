@@ -2,13 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 15:05:02
- * @LastEditTime: 2022-07-08 16:31:54
+ * @LastEditTime: 2022-07-10 09:32:05
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\nuxt.config.ts
  */
 import { defineNuxtConfig } from 'nuxt'
 import transformerDirective from '@unocss/transformer-directives'
+// import presetIcons from '@unocss/preset-icons'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -23,7 +24,11 @@ export default defineNuxtConfig({
         transformers: [transformerDirective()],
         // core options
         shortcuts: [],
-        rules: []
+        rules: [],
+        safelist: [...Array.from({ length: 4 }, (_, i) => `pl-${(i + 1) * 4}`)]
+        // presets: [
+        //     presetIcons()
+        // ]
     },
     // 全局配置，这里只配置生产环境，其他环境请配置 /.env 文件
     runtimeConfig: {

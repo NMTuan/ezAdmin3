@@ -2,20 +2,23 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 13:46:55
- * @LastEditTime: 2022-07-07 11:28:47
+ * @LastEditTime: 2022-07-10 16:49:54
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\menu\Index.vue
 -->
 <template>
-    <div>
-        <LayoutMenuList :pages="firsrLevelPages" />
+    <div class="h-full text-base leading-none overflow-y-auto">
+        <ClientOnly>
+            <LayoutMenuList :pages="firsrLevelPages" />
+        </ClientOnly>
     </div>
 </template>
 <script setup>
 const auth = useAuth()
-const firsrLevelPages = ref([])
 
+// 找到顶级的菜单
+const firsrLevelPages = ref([])
 firsrLevelPages.value = auth.authorizedPages.filter((page) => {
     return page.level === 1 && page.dynamicRoute === false
 })
