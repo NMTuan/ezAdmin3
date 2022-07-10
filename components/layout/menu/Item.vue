@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 13:48:16
- * @LastEditTime: 2022-07-10 19:37:10
+ * @LastEditTime: 2022-07-10 22:40:42
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\menu\Item.vue
@@ -58,9 +58,8 @@ const props = defineProps({
 })
 
 //当前路由对应的菜单要高亮
-const activeRoute = ref(route.name)
-watch(route, (val) => {
-    activeRoute.value = val.name
+const activeRoute = computed(() => {
+    return val.name
 })
 
 // 切换子菜单闭合状态
@@ -74,4 +73,11 @@ const reg = new RegExp(`^${props.page.fileName}/`)
 const children = auth.authorizedPages.filter((page) => {
     return page.level === props.page.level + 1 && page.dynamicRoute === false && reg.test(page.fileName)
 })
+
+//TODO 根据当前路由. 展开上级/上级/上级的菜单
+if (children.length > 0) {
+    console.log(111, route.name, props.page.routeName)
+}
+
+
 </script>
