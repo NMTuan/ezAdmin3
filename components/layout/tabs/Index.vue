@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-11 13:47:07
- * @LastEditTime: 2022-07-11 17:28:04
+ * @LastEditTime: 2022-07-11 20:46:13
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\tabs\Index.vue
@@ -11,13 +11,15 @@
     <div class="flex text-sm py-4 outline-none">
         <template v-for="item in items">
             <div v-if="route.name === item.routeName"
-                class="flex-shrink-0 px-3 py-2 mx-1 bg-sky-500 text-white leading-none rounded cursor-default">
+                class="group flex-shrink-0 px-3 py-2 mx-1 bg-sky-500 text-white leading-none rounded cursor-default relative">
                 {{ item.name }}
+                <LayoutTabsIconClose :routeName="item.routeName" />
             </div>
-            <NuxtLink v-else :to="{ name: item.routeName }" class="flex-shrink-0 px-3 py-2 mx-1 bg-neutral-100 text-neutral-500 leading-none rounded no-underline
+            <NuxtLink v-else :to="{ name: item.routeName }" class="group flex-shrink-0 px-3 py-2 mx-1 bg-neutral-100 text-neutral-500 leading-none rounded no-underline relative
                 hover:bg-neutral-200
                 ">
                 {{ item.name }}
+                <LayoutTabsIconClose :routeName="item.routeName" />
             </NuxtLink>
         </template>
     </div>
