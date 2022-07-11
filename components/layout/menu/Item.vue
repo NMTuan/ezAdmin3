@@ -2,14 +2,16 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 13:48:16
- * @LastEditTime: 2022-07-10 22:40:42
+ * @LastEditTime: 2022-07-11 11:11:24
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\menu\Item.vue
 -->
 <template>
     <div :class="{
-        'bg-neutral-400/8': !collapsed
+        'bg-neutral-400/8': !collapsed,
+        'border-y border-neutral-400/16 ': !collapsed
+        // 'shadow-inner': !collapsed
     }">
         <!-- 没有子菜单 -->
         <template v-if="children.length === 0">
@@ -57,11 +59,6 @@ const props = defineProps({
     page: {}
 })
 
-//当前路由对应的菜单要高亮
-const activeRoute = computed(() => {
-    return val.name
-})
-
 // 切换子菜单闭合状态
 const toggleMenu = () => {
     collapsed.value = !collapsed.value
@@ -74,10 +71,20 @@ const children = auth.authorizedPages.filter((page) => {
     return page.level === props.page.level + 1 && page.dynamicRoute === false && reg.test(page.fileName)
 })
 
-//TODO 根据当前路由. 展开上级/上级/上级的菜单
-if (children.length > 0) {
-    console.log(111, route.name, props.page.routeName)
-}
-
+// 根据当前路由. 展开上级/上级/上级的菜单
+// 把当前路由按`-`分割, 除去最后一位, 循环拼接. 找到对应的page, 展开.
+watch(route, (newVal) => {
+    const arr = newVal.name.split('-')
+    arr.splice(arr.length - 1, 1)
+    arr.reduce((total, item) => {
+        total.push(item)
+        if (total.length > 0 && props.page.routeName === total.join('-')) {
+            collapsed.value = false
+        }
+        return total
+    }, [])
+}, {
+    immediate: true
+})
 
 </script>
