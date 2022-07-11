@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-11 13:47:07
- * @LastEditTime: 2022-07-11 16:12:38
+ * @LastEditTime: 2022-07-11 17:28:04
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\tabs\Index.vue
 -->
 <template>
-    <div class="flex text-sm">
+    <div class="flex text-sm py-4 outline-none">
         <template v-for="item in items">
             <div v-if="route.name === item.routeName"
                 class="flex-shrink-0 px-3 py-2 mx-1 bg-sky-500 text-white leading-none rounded cursor-default">
