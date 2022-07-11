@@ -10,8 +10,6 @@
 <template>
   <div class="flex-1 mx-4 mb-4 border border-neutral-200/50 bg-white">
     main
-    <pre>{{ auth.isLogged }}</pre>
-    <button @click="logout">登出</button>
     <div class="w-96 mx-auto p-5 bg-white border border-neutral-200">123</div>
     <p v-for="i in 20">{{ i }}</p>
     <div class=" bg-sky-400 text-center p-8">
@@ -28,11 +26,6 @@
 </template>
 <script setup>
 
-const auth = useAuth()
-
-const logout = () => {
-  auth.logout()
-}
 </script>
 <script>
 export default {

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 13:48:16
- * @LastEditTime: 2022-07-11 11:11:24
+ * @LastEditTime: 2022-07-11 14:20:23
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\menu\Item.vue
@@ -23,7 +23,7 @@
                 <div class="truncate">{{ page.name }}</div>
             </div>
             <!-- 默认状态 -->
-            <NuxtLink v-else :class="`pl-${page.level * 4}`" class="flex items-center block py-4 pr-4 text-neutral-600 no-underline transition-all
+            <NuxtLink v-else :class="`pl-${page.level * 4}`" class="flex items-center block py-4 pr-4 text-neutral-500 no-underline transition-all
             hover:bg-neutral-200
             " :to="{ name: page.routeName }">
                 <div v-if="page.icon" :class="page.icon" class="mr-2"></div>
@@ -33,7 +33,7 @@
         </template>
         <!-- 有子菜单 -->
         <template v-else>
-            <div :class="`pl-${page.level * 4}`" class="flex py-4 pr-4 text-neutral-600 transition-all 
+            <div :class="`pl-${page.level * 4}`" class="flex py-4 pr-4 text-neutral-500 transition-all 
             hover:bg-neutral-200
             " @click="toggleMenu">
                 <div class="flex-1 truncate">{{ page.name }}</div>
