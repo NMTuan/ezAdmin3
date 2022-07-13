@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:42:41
- * @LastEditTime: 2022-07-12 17:41:47
+ * @LastEditTime: 2022-07-13 11:06:08
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\components\my\button.vue
+ * @FilePath: \ezAdmin3\components\my\Button.vue
 -->
 <template>
     <button :class="useClass" :disabled="props.disabled">
@@ -57,8 +57,8 @@ const props = defineProps({
             return [
                 'default',
                 'full',
+                'xs',
                 'sm',
-                'md',
                 'lg',
                 'angle'
             ].includes(value)
@@ -172,18 +172,18 @@ const useClass = computed(() => {
         case 'full':
             classNames.push('rounded-full')
             break;
-        case 'sm':
+        case 'xs':
             classNames.push('rounded-sm')
             break;
-        case 'md':
-            classNames.push('rounded-md')
+        case 'sm':
+            classNames.push('rounded')
             break;
         case 'lg':
             classNames.push('rounded-lg')
             break;
         case 'default':
         default:
-            classNames.push(`rounded`)
+            classNames.push(`rounded-md`)
     }
 
     return classNames
