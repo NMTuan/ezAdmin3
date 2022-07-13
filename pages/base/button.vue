@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-12 15:40:32
- * @LastEditTime: 2022-07-13 11:57:18
+ * @LastEditTime: 2022-07-13 15:00:52
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\base\button.vue
@@ -23,15 +23,15 @@
             <MyButton type="danger">type = danger</MyButton>
             <MyButton type="link">type = link</MyButton>
         </p>
-        <h4>outline</h4>
+        <h4>border</h4>
         <p>
             <MyButton>button</MyButton>
-            <MyButton outline type="primary">type = primary</MyButton>
-            <MyButton outline type="success">type = success</MyButton>
-            <MyButton outline type="info">type = info</MyButton>
-            <MyButton outline type="warning">type = warning</MyButton>
-            <MyButton outline type="danger">type = danger</MyButton>
-            <MyButton outline type="link">type = link</MyButton>
+            <MyButton border type="primary">type = primary</MyButton>
+            <MyButton border type="success">type = success</MyButton>
+            <MyButton border type="info">type = info</MyButton>
+            <MyButton border type="warning">type = warning</MyButton>
+            <MyButton border type="danger">type = danger</MyButton>
+            <MyButton border type="link">type = link</MyButton>
         </p>
         <h4>disabled</h4>
         <p>
@@ -45,31 +45,25 @@
         </p>
         <p>
             <MyButton disabled>button</MyButton>
-            <MyButton disabled outline type="primary">type = primary</MyButton>
-            <MyButton disabled outline type="success">type = success</MyButton>
-            <MyButton disabled outline type="info">type = info</MyButton>
-            <MyButton disabled outline type="warning">type = warning</MyButton>
-            <MyButton disabled outline type="danger">type = danger</MyButton>
-            <MyButton disabled outline type="link">type = link</MyButton>
+            <MyButton disabled border type="primary">type = primary</MyButton>
+            <MyButton disabled border type="success">type = success</MyButton>
+            <MyButton disabled border type="info">type = info</MyButton>
+            <MyButton disabled border type="warning">type = warning</MyButton>
+            <MyButton disabled border type="danger">type = danger</MyButton>
+            <MyButton disabled border type="link">type = link</MyButton>
         </p>
         <h4>size</h4>
         <p>
-            <MyButton size="lg">size = lg</MyButton>
-            <MyButton>button</MyButton>
-            <MyButton size="sm">size = sm</MyButton>
             <MyButton size="xs">size = xs</MyButton>
-        </p>
-        <p>
-            <MyButton size="xs" round="full">size = xs</MyButton>
-            <MyButton size="sm" round="full">size = sm</MyButton>
-            <MyButton size="lg" round="full">size = lg</MyButton>
-            <MyButton round="full">button</MyButton>
+            <MyButton size="sm">size = sm</MyButton>
+            <MyButton>size = md (default)</MyButton>
+            <MyButton size="lg">size = lg</MyButton>
         </p>
         <h4>round</h4>
         <p>
-            <MyButton round="angle">round=angle</MyButton>
+            <MyButton round="none">round=none</MyButton>
             <MyButton round="xs">round=xs</MyButton>
-            <MyButton>round=sm default</MyButton>
+            <MyButton>round=sm (default)</MyButton>
             <MyButton round="md">round=md</MyButton>
             <MyButton round="lg">round=lg</MyButton>
             <MyButton round="full">round=full</MyButton>

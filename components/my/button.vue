@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:42:41
- * @LastEditTime: 2022-07-13 11:56:11
+ * @LastEditTime: 2022-07-13 15:01:15
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\Button.vue
@@ -46,7 +46,7 @@ const props = defineProps({
         }
 
     },
-    outline: {  // 边框
+    border: {  // 边框
         type: Boolean,
         default: false
     },
@@ -55,7 +55,7 @@ const props = defineProps({
         default: 'sm',
         validator(value: string) {
             return [
-                'angle',
+                'none',
                 'xs',
                 'sm',
                 'md',
@@ -94,7 +94,7 @@ const useClass = computed(() => {
     }
 
     // 样式
-    if (props.outline) {
+    if (props.border) {
         switch (props.type) {
             case 'primary':
                 classNames.push('bg-sky-50 text-sky-500 border-sky-200')
@@ -167,7 +167,7 @@ const useClass = computed(() => {
 
     // 边角
     switch (props.round) {
-        case 'angle':
+        case 'none':
             break;
         case 'xs':
             classNames.push('rounded-sm')
