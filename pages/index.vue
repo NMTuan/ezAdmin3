@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 15:07:40
- * @LastEditTime: 2022-07-10 21:16:11
+ * @LastEditTime: 2022-07-13 10:31:21
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\index.vue
@@ -30,7 +30,7 @@
 <script>
 export default {
   page: {
-    name: '首页',
+    name: 'Home',
     icon: 'i-ri-home-3-fill',
     sort: 100
   }
