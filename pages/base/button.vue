@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-12 15:40:32
- * @LastEditTime: 2022-07-13 11:07:03
+ * @LastEditTime: 2022-07-13 11:57:18
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\pages\my\button.vue
+ * @FilePath: \ezAdmin3\pages\base\button.vue
 -->
 <template>
     <LayoutContainer>
@@ -60,17 +60,17 @@
             <MyButton size="xs">size = xs</MyButton>
         </p>
         <p>
+            <MyButton size="xs" round="full">size = xs</MyButton>
+            <MyButton size="sm" round="full">size = sm</MyButton>
             <MyButton size="lg" round="full">size = lg</MyButton>
             <MyButton round="full">button</MyButton>
-            <MyButton size="sm" round="full">size = sm</MyButton>
-            <MyButton size="xs" round="full">size = xs</MyButton>
         </p>
         <h4>round</h4>
         <p>
             <MyButton round="angle">round=angle</MyButton>
             <MyButton round="xs">round=xs</MyButton>
-            <MyButton round="sm">round=sm</MyButton>
-            <MyButton>button</MyButton>
+            <MyButton>round=sm default</MyButton>
+            <MyButton round="md">round=md</MyButton>
             <MyButton round="lg">round=lg</MyButton>
             <MyButton round="full">round=full</MyButton>
         </p>

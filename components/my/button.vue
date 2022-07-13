@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:42:41
- * @LastEditTime: 2022-07-13 11:11:32
+ * @LastEditTime: 2022-07-13 11:56:11
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\Button.vue
@@ -35,13 +35,13 @@ const props = defineProps({
     },
     size: { // 尺寸
         type: String,
-        default: 'default',
+        default: 'md',
         validator(value: string) {
             return [
-                'default',
-                'lg',
+                'xs',
+                'md',
                 'sm',
-                'xs'
+                'lg',
             ].includes(value)
         }
 
@@ -52,15 +52,15 @@ const props = defineProps({
     },
     round: {  // 边角
         type: String,
-        default: 'default',
+        default: 'sm',
         validator(value: string) {
             return [
-                'default',
-                'full',
+                'angle',
                 'xs',
                 'sm',
+                'md',
                 'lg',
-                'angle'
+                'full'
             ].includes(value)
         }
 
@@ -156,12 +156,12 @@ const useClass = computed(() => {
         case 'sm':
             classNames.push('text-sm px-2 py-1.5')
             break;
+        case 'md':
+        default:
+            classNames.push('text-base px-3 py-2')
+            break;
         case 'lg':
             classNames.push('text-lg px-4 py-2.5')
-            break;
-        case 'default':
-            // default:
-            classNames.push('text-base px-3 py-2')
             break;
     }
 
@@ -169,21 +169,22 @@ const useClass = computed(() => {
     switch (props.round) {
         case 'angle':
             break;
-        case 'full':
-            classNames.push('rounded-full')
-            break;
         case 'xs':
             classNames.push('rounded-sm')
             break;
         case 'sm':
+        default:
             classNames.push('rounded')
+            break;
+        case 'md':
+            classNames.push(`rounded-md`)
             break;
         case 'lg':
             classNames.push('rounded-lg')
             break;
-        case 'default':
-        default:
-            classNames.push(`rounded-md`)
+        case 'full':
+            classNames.push('rounded-full')
+            break;
     }
 
     return classNames
