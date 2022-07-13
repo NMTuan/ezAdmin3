@@ -102,34 +102,34 @@ const type = ref(props.type)    // 类型, 由于showPassword动态改变, 所�
 
 // 外面容器
 const useClass = computed(() => {
-    let classNames: string[] = []
+    let className: string[] = []
 
     if (props.clearStyle) {
-        return classNames
+        return className
     }
-    classNames.push('overflow-hidden')
-    classNames.push('border')
+    className.push('overflow-hidden')
+    className.push('border')
 
     // 边框
     switch (props.border) {
         case 'primary':
-            classNames.push('bg-sky-50 text-sky-500 border-sky-200')
+            className.push('bg-sky-50 text-sky-500 border-sky-200')
             break;
         case 'success':
-            classNames.push('bg-emerald-50 text-emerald-500 border-emerald-200')
+            className.push('bg-emerald-50 text-emerald-500 border-emerald-200')
             break;
         case 'warning':
-            classNames.push('bg-amber-50 text-amber-500 border-amber-200')
+            className.push('bg-amber-50 text-amber-500 border-amber-200')
             break;
         case 'danger':
-            classNames.push('bg-red-50 text-red-500 border-red-200')
+            className.push('bg-red-50 text-red-500 border-red-200')
             break;
         case 'info':
-            classNames.push('bg-neutral-50 text-neutral-500 border-neutral-200')
+            className.push('bg-neutral-50 text-neutral-500 border-neutral-200')
             break;
         case 'default':
         default:
-            classNames.push('bg-white text-neutral-500 border-neutral-400')
+            className.push('bg-white text-neutral-500 border-neutral-400')
     }
 
 
@@ -138,81 +138,81 @@ const useClass = computed(() => {
         case 'none':
             break;
         case 'xs':
-            classNames.push('rounded-sm')
+            className.push('rounded-sm')
             break;
         case 'sm':
         default:
-            classNames.push('rounded')
+            className.push('rounded')
             break;
         case 'md':
-            classNames.push(`rounded-md`)
+            className.push(`rounded-md`)
             break;
         case 'lg':
-            classNames.push('rounded-lg')
+            className.push('rounded-lg')
             break;
         case 'full':
-            classNames.push('rounded-full')
+            className.push('rounded-full')
             break;
     }
 
 
-    return classNames
+    return className
 })
 
 // input元素
 const inputClass = computed(() => {
-    let classNames: string[] = []
-    classNames.push('w-full')
+    let className: string[] = []
+    className.push('w-full')
 
     if (props.clearStyle) {
-        return classNames
+        return className
     }
-    classNames.push('leading-none') // 行高会影响按钮高度
-    classNames.push('border-0')
-    classNames.push('outline-0')
-    classNames.push('bg-transparent')
+    className.push('leading-none') // 行高会影响按钮高度
+    className.push('border-0')
+    className.push('outline-0')
+    className.push('bg-transparent')
 
     // 尺寸
     switch (props.size) {
         case 'xs':
-            classNames.push('text-xs px-1.5 py-0.5')
+            className.push('text-xs px-1.5 py-0.5')
             break;
         case 'sm':
-            classNames.push('text-sm px-2 py-0.875')
+            className.push('text-sm px-2 py-0.875')
             break;
         case 'md':
         default:
-            classNames.push('text-base px-3 py-1.375')
+            className.push('text-base px-3 py-1.375')
             break;
         case 'lg':
-            classNames.push('text-lg px-4 py-1.75')
+            className.push('text-lg px-4 py-1.75')
             break;
     }
 
     // 边框
     switch (props.border) {
         case 'primary':
-            classNames.push('placeholder-sky-300 text-sky-500')
+            className.push('placeholder-sky-300 text-sky-500')
             break;
         case 'success':
-            classNames.push('placeholder-emerald-300 text-emerald-500')
+            className.push('placeholder-emerald-300 text-emerald-500')
             break;
         case 'warning':
-            classNames.push('placeholder-amber-300 text-amber-500')
+            className.push('placeholder-amber-300 text-amber-500')
             break;
         case 'danger':
-            classNames.push('placeholder-red-300 text-red-500')
+            className.push('placeholder-red-300 text-red-500')
             break;
         case 'info':
-            classNames.push('placeholder-neutral-300 text-neutral-500')
+            className.push('placeholder-neutral-300 text-neutral-500')
             break;
         case 'default':
         default:
-            classNames.push('placeholder-neutral-300 text-neutral-500')
+            className.push('placeholder-neutral-300 text-neutral-500')
     }
 
 
-    return classNames
+    return className
 })
 
 // 更新值
@@ -221,30 +221,30 @@ const updateVal = (e) => {
 }
 
 const eyeClassName = computed(() => {
-    const classNames = []
-    classNames.push(type.value === 'password' ? 'i-ri-eye-line' : 'i-ri-eye-off-line')
+    const className = []
+    className.push(type.value === 'password' ? 'i-ri-eye-line' : 'i-ri-eye-off-line')
 
     if (props.clearStyle) {
-        return classNames
+        return className
     }
 
     switch (props.size) {
         case 'xs':
-            classNames.push('text-xs mr-1.5')
+            className.push('text-xs mr-1.5')
             break;
         case 'sm':
-            classNames.push('text-sm mr-2')
+            className.push('text-sm mr-2')
             break;
         case 'md':
         default:
-            classNames.push('text-base mr-3')
+            className.push('text-base mr-3')
             break;
         case 'lg':
-            classNames.push('text-lg mr-4')
+            className.push('text-lg mr-4')
             break;
     }
 
-    return classNames
+    return className
 })
 // 切换显示密码
 const changeShowPassword = () => {

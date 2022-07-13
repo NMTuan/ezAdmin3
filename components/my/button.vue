@@ -73,95 +73,95 @@ const props = defineProps({
 })
 
 const useClass = computed(() => {
-    let classNames: string[] = []
+    let className: string[] = []
 
     if (props.clearStyle) {
-        return classNames
+        return className
     }
 
-    classNames.push('leading-none') // 行高会影响按钮高度
-    classNames.push('border')
+    className.push('leading-none') // 行高会影响按钮高度
+    className.push('border')
 
-    classNames.push('v-mid')    // 默认垂直居中?
+    className.push('v-mid')    // 默认垂直居中?
 
     // 禁用
     if (props.disabled) {
-        classNames.push('cursor-not-allowed')
-        classNames.push('op-50')
+        className.push('cursor-not-allowed')
+        className.push('op-50')
     } else {
-        classNames.push('cursor-pointer')
-        classNames.push('hover:op-80')
+        className.push('cursor-pointer')
+        className.push('hover:op-80')
     }
 
     // 样式
     if (props.border) {
         switch (props.type) {
             case 'primary':
-                classNames.push('bg-sky-50 text-sky-500 border-sky-200')
+                className.push('bg-sky-50 text-sky-500 border-sky-200')
                 break;
             case 'success':
-                classNames.push('bg-emerald-50 text-emerald-500 border-emerald-200')
+                className.push('bg-emerald-50 text-emerald-500 border-emerald-200')
                 break;
             case 'warning':
-                classNames.push('bg-amber-50 text-amber-500 border-amber-200')
+                className.push('bg-amber-50 text-amber-500 border-amber-200')
                 break;
             case 'danger':
-                classNames.push('bg-red-50 text-red-500 border-red-200')
+                className.push('bg-red-50 text-red-500 border-red-200')
                 break;
             case 'info':
-                classNames.push('bg-neutral-50 text-neutral-500 border-neutral-200')
+                className.push('bg-neutral-50 text-neutral-500 border-neutral-200')
                 break;
             case 'link':
-                classNames = classNames.filter(item => item !== 'border')
-                classNames = classNames.filter(item => item !== 'op-50')
-                classNames.push('border-none bg-transparent border-b underline underline-offset-4')
+                className = className.filter(item => item !== 'border')
+                className = className.filter(item => item !== 'op-50')
+                className.push('border-none bg-transparent border-b underline underline-offset-4')
                 break;
             case 'default':
             default:
-                classNames.push('bg-white text-neutral-500 border-neutral-400')
+                className.push('bg-white text-neutral-500 border-neutral-400')
         }
     } else {
         switch (props.type) {
             case 'primary':
-                classNames.push('bg-sky-500 text-white border-sky-500')
+                className.push('bg-sky-500 text-white border-sky-500')
                 break;
             case 'success':
-                classNames.push('bg-emerald-500 text-white border-emerald-500')
+                className.push('bg-emerald-500 text-white border-emerald-500')
                 break;
             case 'warning':
-                classNames.push('bg-amber-500 text-white border-amber-500')
+                className.push('bg-amber-500 text-white border-amber-500')
                 break;
             case 'danger':
-                classNames.push('bg-red-500 text-white border-red-500')
+                className.push('bg-red-500 text-white border-red-500')
                 break;
             case 'info':
-                classNames.push('bg-neutral-500 text-white border-neutral-500')
+                className.push('bg-neutral-500 text-white border-neutral-500')
                 break;
             case 'link':
-                classNames = classNames.filter(item => item !== 'border')
-                classNames = classNames.filter(item => item !== 'op-50')
-                classNames.push('border-none bg-transparent border-b')
+                className = className.filter(item => item !== 'border')
+                className = className.filter(item => item !== 'op-50')
+                className.push('border-none bg-transparent border-b')
                 break;
             case 'default':
             default:
-                classNames.push('bg-white text-neutral-600 border-neutral-400')
+                className.push('bg-white text-neutral-600 border-neutral-400')
         }
     }
 
     // 尺寸
     switch (props.size) {
         case 'xs':
-            classNames.push('text-xs px-1.5 py-1')
+            className.push('text-xs px-1.5 py-1')
             break;
         case 'sm':
-            classNames.push('text-sm px-2 py-1.5')
+            className.push('text-sm px-2 py-1.5')
             break;
         case 'md':
         default:
-            classNames.push('text-base px-3 py-2')
+            className.push('text-base px-3 py-2')
             break;
         case 'lg':
-            classNames.push('text-lg px-4 py-2.5')
+            className.push('text-lg px-4 py-2.5')
             break;
     }
 
@@ -170,24 +170,24 @@ const useClass = computed(() => {
         case 'none':
             break;
         case 'xs':
-            classNames.push('rounded-sm')
+            className.push('rounded-sm')
             break;
         case 'sm':
         default:
-            classNames.push('rounded')
+            className.push('rounded')
             break;
         case 'md':
-            classNames.push(`rounded-md`)
+            className.push(`rounded-md`)
             break;
         case 'lg':
-            classNames.push('rounded-lg')
+            className.push('rounded-lg')
             break;
         case 'full':
-            classNames.push('rounded-full')
+            className.push('rounded-full')
             break;
     }
 
-    return classNames
+    return className
 })
 
 
