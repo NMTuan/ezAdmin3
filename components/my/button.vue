@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:42:41
- * @LastEditTime: 2022-07-13 11:06:08
+ * @LastEditTime: 2022-07-13 11:11:32
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\Button.vue
 -->
 <template>
-    <button :class="useClass" :disabled="props.disabled">
+    <button class="myButton" :class="useClass" :disabled="props.disabled">
         <slot />
     </button>
 </template>
@@ -73,7 +73,7 @@ const props = defineProps({
 })
 
 const useClass = computed(() => {
-    let classNames: string[] = ['myButton']
+    let classNames: string[] = []
 
     if (props.clearStyle) {
         return classNames
