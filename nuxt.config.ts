@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 15:05:02
- * @LastEditTime: 2022-07-10 09:32:05
+ * @LastEditTime: 2022-07-15 14:44:45
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\nuxt.config.ts
@@ -33,9 +33,13 @@ export default defineNuxtConfig({
     // 全局配置，这里只配置生产环境，其他环境请配置 /.env 文件
     runtimeConfig: {
         public: {
-            siteName: 'ezAdmin3管理中心',
+            siteName: 'ezAdmin3',
             apiBaseUrl: '', // 接口url
-            loginFreeList: [] // 免登录页面 这里填的是路由名称routeName 需要注意, 这里是标准json格式, 需要双引号
+            loginFreeList: [], // 免登录页面 这里填的是路由名称routeName 需要注意, 这里是标准json格式, 需要双引号
+            demo: false,
+            demoMail: '',
+            demoPassword: '',
+            githubUrl: ''
         }
     }
 })
