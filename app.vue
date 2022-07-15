@@ -2,29 +2,17 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 19:44:31
- * @LastEditTime: 2022-07-06 14:42:07
+ * @LastEditTime: 2022-07-12 17:14:32
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\app.vue
 -->
 <template>
-    <main>
+    <main class="h-full">
         <template v-if="auth.loaded">
-            <NuxtLink :to="{ name: 'index' }">[index]</NuxtLink>
-            <NuxtLink :to="{ name: 'login' }">[login]</NuxtLink>
-            <NuxtLink :to="{ name: 'aa' }">[/aa]</NuxtLink>
-            <NuxtLink :to="{ name: 'aa-aaa' }">[/aa/aaa]</NuxtLink>
-            <NuxtLink :to="{ name: 'bb' }">[/bb]</NuxtLink>
-            <NuxtLink :to="{ name: 'bb-id', params: { id: 1 } }">[/bb/1]</NuxtLink>
-            <NuxtLink :to="{ name: 'bb-id', params: { id: 2 } }">[/bb/2]</NuxtLink>
-            <hr>
-            <NuxtPage />
-            <div class="flex">
-                <pre class="flex-1">{{ $pages }}</pre>
-                <div class="flex-1">
-                    <LayoutMenu />
-                </div>
-            </div>
+            <NuxtLayout>
+                <NuxtPage />
+            </NuxtLayout>
 
         </template>
         <template v-else>
@@ -35,3 +23,14 @@
 <script setup>
 const auth = useAuth()
 </script>
+<style lang="scss">
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#__nuxt {
+    @apply bg-neutral-50 h-full text-neutral-600;
+}
+</style>

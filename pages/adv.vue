@@ -1,20 +1,19 @@
 <!--
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
- * @Date: 2022-07-05 10:49:46
- * @LastEditTime: 2022-07-10 16:49:44
+ * @Date: 2022-07-13 10:16:26
+ * @LastEditTime: 2022-07-13 10:27:51
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\pages\aa\aaa.vue
+ * @FilePath: \ezAdmin3\pages\adv.vue
 -->
 <template>
-    <div>aa/aaa page</div>
+    <NuxtPage />
 </template>
 <script>
 export default {
     page: {
-        name: 'aa/aaa页面'
+        name: 'AdvComponents'
     }
 }
-
 </script>
