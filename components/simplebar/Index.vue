@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-11 16:52:47
- * @LastEditTime: 2022-07-11 17:26:52
+ * @LastEditTime: 2022-07-15 11:11:29
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\simplebar\Index.vue
@@ -13,7 +13,7 @@
     </div>
 </template>
 <script setup>
-import SimpleBar from 'simplebar/dist/simplebar';
+import SimpleBar from 'simplebar/dist/simplebar.js';
 import 'simplebar/dist/simplebar.css';
 
 const element = ref(null)
