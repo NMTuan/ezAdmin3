@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 09:35:22
- * @LastEditTime: 2022-07-18 11:39:29
+ * @LastEditTime: 2022-07-18 14:59:05
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\table.vue
@@ -20,7 +20,7 @@
             <tbody>
                 <tr>
                     <td v-for="(field, index) in props.fields" :class="tdClass">
-                        <MyButton :size="props.size" v-if="index === 2">123</MyButton>
+                        <MyButton :size="props.size || 'md'" v-if="index === 2">123</MyButton>
                         <div v-else :class="cellClass">
                             111
                         </div>
@@ -98,7 +98,6 @@ const tdClass = computed(() => {
         return className
     }
 
-    console.log('border', props.border)
     if (props.border) {
         className.push('border')
 
@@ -121,7 +120,6 @@ const cellClass = computed(() => {
 
 
     //size
-    console.log('size', props.size)
     if (props.size === 'xs') {
         className.push('text-xs px-2 py-1.5')
 

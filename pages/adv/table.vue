@@ -1,30 +1,18 @@
 <!--
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
- * @Date: 2022-07-18 09:36:18
- * @LastEditTime: 2022-07-18 14:59:51
+ * @Date: 2022-07-18 15:50:05
+ * @LastEditTime: 2022-07-18 16:28:29
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\pages\base\table.vue
+ * @FilePath: \ezAdmin3\pages\adv\table.vue
 -->
 <template>
     <LayoutContainer>
-        <div class='py-2'>
-            [
-            <label><input type="checkbox" v-model="border" /> border</label>
-            ]
-            [
-            size:
-            <label><input type="radio" name="size" value="md" v-model="size"> md </label>
-            <label><input type="radio" name="size" value="sm" v-model="size"> sm </label>
-            <label><input type="radio" name="size" value="xs" v-model="size"> xs </label>
-            ]
-        </div>
-        <MyTable :fields='fields' :data='data' :border="border" :size="size" />
+        <PageTable :fields="fields" :data="data" :actions="actions" />
     </LayoutContainer>
 </template>
-<script setup lang="ts">
-// https://www.tiobe.com/tiobe-index/
+<script setup>
 const fields = [
     { label: 'Jul 2022', field: 'thisYear' },
     { label: 'Jul 2021', field: 'lastYear' },
@@ -45,13 +33,16 @@ const data = [
     { thisYear: '9', lastYear: '10', change: 'up', language: 'SQL', rating: '1.64%', changeRate: '+0.11%' },
     { thisYear: '10', lastYear: '16', change: 'up', language: 'Swift', rating: '1.27%', changeRate: '+0.20%' },
 ]
-const border = ref(false)
-const size = ref('md')
+const actions = [
+    { label: '创建', toName: 'adv-table-create' },
+    { label: '编辑' },
+    { label: '删除' }
+]
 </script>
-<script lang="ts">
+<script>
 export default {
     page: {
-        name: 'MyTable'
+        name: "PageTabe"
     }
 }
 </script>
