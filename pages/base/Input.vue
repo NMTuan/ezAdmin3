@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-13 10:22:06
- * @LastEditTime: 2022-07-13 17:29:55
+ * @LastEditTime: 2022-07-19 17:43:43
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\pages\base\input.vue
+ * @FilePath: \ezAdmin3\pages\base\Input.vue
 -->
 <template>
     <LayoutContainer>
@@ -13,9 +13,11 @@
         <div class="flex">
             <div class="flex-1">
                 <p>input</p>
-                <MyInput clearStyle v-model='value' />
-                <MyInput clearStyle v-model='value' type="password" />
-                <MyInput clearStyle v-model='value' type="password" show-password />
+                <form>
+                    <MyInput clearStyle v-model='value' />
+                    <MyInput clearStyle v-model='value' type="password" />
+                    <MyInput clearStyle v-model='value' type="password" show-password />
+                </form>
             </div>
             <div class="flex-1">
                 <p>textarea</p>
@@ -87,10 +89,14 @@
         <h4>show-password</h4>
         <div class="flex">
             <div class="flex-1">
-                <MyInput type="password" v-model="value" show-password placeholder="show-password" />
+                <form>
+                    <MyInput type="password" v-model="value" show-password placeholder="show-password" />
+                </form>
             </div>
             <div class="flex-1">
-                <MyInput type="password" v-model="value" />
+                <form>
+                    <MyInput type="password" v-model="value" />
+                </form>
             </div>
         </div>
     </LayoutContainer>
