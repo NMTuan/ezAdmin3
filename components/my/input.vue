@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:05:14
- * @LastEditTime: 2022-07-13 17:29:19
+ * @LastEditTime: 2022-07-19 15:39:39
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\input.vue
@@ -32,7 +32,7 @@
 <script setup lang="ts">
 const props = defineProps({
     modelValue: {
-        type: String,
+        type: [String, Number],
         default: ''
     },
     clearStyle: {   // 清除预设样式
