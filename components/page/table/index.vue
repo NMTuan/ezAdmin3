@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 15:50:05
- * @LastEditTime: 2022-07-19 16:48:52
+ * @LastEditTime: 2022-07-19 16:53:55
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\page\table\index.vue
 -->
 <template>
-    <div>
+    <LayoutContainer>
         {{ loading }}
         <PageTableActions :actions="props.actions" />
         <NuxtPage />
@@ -16,7 +16,7 @@
         <div class="flex items-center pt-4" v-if="fetchApi">
             <PageTablePagination v-model:page="currentPage" v-model:limit="limit" :count="totalCount" />
         </div>
-    </div>
+    </LayoutContainer>
 </template>
 <script setup>
 const props = defineProps({

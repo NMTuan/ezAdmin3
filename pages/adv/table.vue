@@ -2,15 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 15:50:05
- * @LastEditTime: 2022-07-19 14:20:26
+ * @LastEditTime: 2022-07-19 16:53:21
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\adv\table.vue
 -->
 <template>
-    <LayoutContainer>
-        <PageTable :fields="fields" :actions="actions" :fetchApi="fetchApi" />
-    </LayoutContainer>
+    <PageTable :fields="fields" :actions="actions" :fetchApi="fetchApi" />
 </template>
 <script setup>
 const fix = useFix()
