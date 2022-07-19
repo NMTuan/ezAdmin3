@@ -25,8 +25,6 @@
   </div>
 </template>
 <script setup>
-const fix = useFix()
-const api = useApi()
 </script>
 <script>
 export default {
