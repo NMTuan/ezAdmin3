@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-11 16:52:47
- * @LastEditTime: 2022-07-15 11:11:29
+ * @LastEditTime: 2022-07-20 17:03:51
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\simplebar\Index.vue
 -->
 <template>
-    <div ref="element" x="bbb">
+    <div ref="element" class="h-full w-full">
         <slot />
     </div>
 </template>

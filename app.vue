@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 19:44:31
- * @LastEditTime: 2022-07-19 17:18:15
+ * @LastEditTime: 2022-07-20 16:25:49
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\app.vue
@@ -16,6 +16,8 @@
     <template v-else>
         loading
     </template>
+    <div id="drawer"></div>
+    <div id="dialog"></div>
 </template>
 <script setup>
 const auth = useAuth()

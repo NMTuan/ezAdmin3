@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-10 19:53:44
- * @LastEditTime: 2022-07-10 20:40:34
+ * @LastEditTime: 2022-07-20 16:57:09
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\guide\Index.vue
 -->
 <template>
     <div class="flex text-xs p-4 ">
-        <div class="mr-4 pr-4 border-r border-neutral-200 text-neutral-600 text-lg font-bold leading-none">
+        <div class="mr-4 pr-4 border-r border-neutral-200 text-lg font-bold leading-none">
             {{ current.name }}
         </div>
         <div class="flex-shrink-0 flex items-center text-neutral-500">

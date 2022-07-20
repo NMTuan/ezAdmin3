@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 15:50:05
- * @LastEditTime: 2022-07-19 16:53:21
+ * @LastEditTime: 2022-07-20 17:24:05
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\adv\table.vue
@@ -25,9 +25,9 @@ const fields = [
 ]
 
 const actions = [
-    { label: '创建', toName: 'adv-table-create' },
-    { label: '编辑' },
-    { label: '删除' }
+    { label: 'create', toName: 'adv-table-create' },
+    { label: 'edit' },
+    { label: 'delete' }
 ]
 
 const fetchApi = api.table.fetch

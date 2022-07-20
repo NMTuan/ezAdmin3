@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 15:50:05
- * @LastEditTime: 2022-07-19 16:53:55
+ * @LastEditTime: 2022-07-20 16:22:48
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\page\table\index.vue
@@ -19,6 +19,7 @@
     </LayoutContainer>
 </template>
 <script setup>
+const route = useRoute()
 const props = defineProps({
     fields: {   // 表头(列字段)
         type: Array,
@@ -47,6 +48,13 @@ const totalCount = ref(0)    // 总条数
 
 const currentPage = ref(1)
 const limit = ref(10)
+
+// 如果reload=true, 则重载数据
+watch(() => route.params.reload, (val) => {
+    if (val) {
+        fetchData()
+    }
+})
 
 // 条数改变时, 需要重新查询
 watch(limit, () => {
