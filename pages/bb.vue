@@ -25,8 +25,7 @@ console.log('bb', route.meta.title)
 <script>
 export default {
     page: {
-        name: 'bb页面',
-        sort: 200
+        name: 'bb页面'
     }
 }
 

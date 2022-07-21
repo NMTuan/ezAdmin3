@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 09:35:22
- * @LastEditTime: 2022-07-18 14:59:05
+ * @LastEditTime: 2022-07-21 11:47:53
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\table.vue
@@ -18,14 +18,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <!-- <tr>
                     <td v-for="(field, index) in props.fields" :class="tdClass">
                         <MyButton :size="props.size || 'md'" v-if="index === 2">123</MyButton>
                         <div v-else :class="cellClass">
                             111
                         </div>
                     </td>
-                </tr>
+                </tr> -->
                 <tr v-for="row in props.data">
                     <td v-for="field in props.fields" :class="tdClass">
                         <div :class="cellClass">

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-13 10:16:26
- * @LastEditTime: 2022-07-18 14:44:57
+ * @LastEditTime: 2022-07-21 11:46:26
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\adv.vue
@@ -15,7 +15,8 @@
 <script>
 export default {
     page: {
-        name: 'AdvComponents'
+        name: 'AdvComponents',
+        sort: 300
     }
 }
 </script>

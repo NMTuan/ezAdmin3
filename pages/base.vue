@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-13 10:16:26
- * @LastEditTime: 2022-07-18 14:44:29
+ * @LastEditTime: 2022-07-21 11:45:49
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\base.vue
@@ -15,7 +15,8 @@
 <script>
 export default {
     page: {
-        name: 'Components'
+        name: 'Components',
+        sort: 200
     }
 }
 </script>
