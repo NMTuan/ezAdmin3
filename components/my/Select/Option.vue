@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 16:44:57
- * @LastEditTime: 2022-07-21 17:34:43
+ * @LastEditTime: 2022-07-21 20:43:09
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\components\my\Select\option.vue
+ * @FilePath: \ezAdmin3\components\my\Select\Option.vue
 -->
 <template>
     <div class="mySelect__Option
@@ -49,8 +49,7 @@ const optionClass = computed(() => {
             className.push('text-lg px-4 py-1.5')
             break;
     }
-
-    if (value === props.option.value) {
+    if (value.value === props.option.value) {
         className.push('bg-sky-500 text-white')
         className.push('hover:bg-sky-500')
     }

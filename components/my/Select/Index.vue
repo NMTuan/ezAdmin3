@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 11:57:24
- * @LastEditTime: 2022-07-21 17:38:24
+ * @LastEditTime: 2022-07-21 20:47:14
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\Select\Index.vue
@@ -15,7 +15,7 @@
             </div>
             <div class="flex-shrink-0 i-ri-arrow-down-s-line"> </div>
         </div>
-        <div class="mySelect__Options" :class="optionsClass">
+        <div class="mySelect__Options" :class="optionsClass" v-if="showOptions">
             <MySelectOption v-for="option in options" :option="option" @click="selectOption(option)" />
         </div>
     </div>
@@ -64,7 +64,7 @@ const props = defineProps({
 
 provide('clearStyle', props.clearStyle)
 provide('size', props.size)
-provide('value', props.modelValue)
+provide('value', computed(() => props.modelValue))
 
 const emits = defineEmits([
     'update:modelValue'
