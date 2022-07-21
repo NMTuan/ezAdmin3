@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 11:57:24
- * @LastEditTime: 2022-07-21 20:47:14
+ * @LastEditTime: 2022-07-21 22:26:46
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\Select\Index.vue
@@ -11,7 +11,12 @@
     <div ref="selectEl" class="mySelect" :class="useClass">
         <div class="mySelect__input" :class="inputClass" @click="showOptions = !showOptions">
             <div class="flex-1 truncate">
-                {{ showText }}
+                <template v-if="multiple">
+                    <span v-for="item in showText">{{ item }}x </span>
+                </template>
+                <template>
+                    {{ showText }}
+                </template>
             </div>
             <div class="flex-shrink-0 i-ri-arrow-down-s-line"> </div>
         </div>
@@ -23,12 +28,16 @@
 <script setup lang="ts">
 const props = defineProps({
     modelValue: {
-        type: [String, Number],
+        type: [String, Number, Array],
         default: ''
     },
     options: {
         type: Array,
         default: () => []
+    },
+    multiple: {
+        type: Boolean,
+        default: false
     },
     clearStyle: {   // 清除预设样式
         type: Boolean,
@@ -64,15 +73,29 @@ const props = defineProps({
 
 provide('clearStyle', props.clearStyle)
 provide('size', props.size)
-provide('value', computed(() => props.modelValue))
 
 const emits = defineEmits([
     'update:modelValue'
 ])
 
-const selectEl = ref(null)
+const selectEl = ref(null)  // 容器
 const showOptions = ref(false)  // 是否显示下拉菜单
+const values = computed(() => { // 已选值, 统一按array处理
+    return Array.isArray(props.modelValue) ? JSON.parse(JSON.stringify(props.modelValue)) : [props.modelValue]
+})
+provide('values', values)
+
 const showText = computed(() => {
+    if (props.multiple) {
+        const currentOptions = values.value.reduce((total, item) => {
+            const option = props.options.find(that => that.value === item)
+            if (option && option.label) {
+                total.push(option.label)
+            }
+            return total
+        }, [])
+        return currentOptions
+    }
     const currentOption = props.options.find(item => item.value === props.modelValue)
     return currentOption ? (currentOption?.label || '') : ''
 })
@@ -217,6 +240,19 @@ const optionsClass = computed(() => {
 
 // 点击option
 const selectOption = (option) => {
+    if (props.multiple) {
+        console.log(111, values.value.includes(option.value))
+        if (values.value.includes(option.value)) {
+            const index = values.value.indexOf(option.value)
+            values.value.splice(index, 1)
+
+        } else {
+            values.value.push(option.value)
+        }
+        emits('update:modelValue', values.value)
+        return
+    }
+    // 单选
     emits('update:modelValue', option.value)
     showOptions.value = false
 }
