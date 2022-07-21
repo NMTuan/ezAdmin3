@@ -129,7 +129,7 @@ const useClass = computed(() => {
             break;
         case 'default':
         default:
-            className.push('bg-white text-neutral-500 border-neutral-400')
+            className.push('bg-white text-neutral-500 border-neutral-300')
     }
 
     if (props.type !== 'textarea') {

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:42:41
- * @LastEditTime: 2022-07-21 15:27:45
+ * @LastEditTime: 2022-07-21 15:45:47
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\button.vue
@@ -144,7 +144,7 @@ const useClass = computed(() => {
                 break;
             case 'default':
             default:
-                className.push('bg-white text-neutral-600 border-neutral-400')
+                className.push('bg-white text-neutral-600 border-neutral-300')
         }
     }
 
