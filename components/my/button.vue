@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:42:41
- * @LastEditTime: 2022-07-13 15:01:15
+ * @LastEditTime: 2022-07-21 15:27:45
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\components\my\Button.vue
+ * @FilePath: \ezAdmin3\components\my\button.vue
 -->
 <template>
     <button class="myButton" :class="useClass" :disabled="props.disabled">
@@ -151,17 +151,17 @@ const useClass = computed(() => {
     // 尺寸
     switch (props.size) {
         case 'xs':
-            className.push('text-xs px-1.5 py-1')
+            className.push('text-xs px-1.5 py-1 h-5.5')
             break;
         case 'sm':
-            className.push('text-sm px-2 py-1.5')
+            className.push('text-sm px-2 py-1.5 h-7')
             break;
         case 'md':
         default:
-            className.push('text-base px-3 py-2')
+            className.push('text-base px-3 py-2 h-8.5')
             break;
         case 'lg':
-            className.push('text-lg px-4 py-2.5')
+            className.push('text-lg px-4 py-2.5 h-10')
             break;
     }
 

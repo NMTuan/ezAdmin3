@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:05:14
- * @LastEditTime: 2022-07-19 15:39:39
+ * @LastEditTime: 2022-07-21 15:43:23
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\input.vue
@@ -130,6 +130,25 @@ const useClass = computed(() => {
         case 'default':
         default:
             className.push('bg-white text-neutral-500 border-neutral-400')
+    }
+
+    if (props.type !== 'textarea') {
+        // 尺寸
+        switch (props.size) {
+            case 'xs':
+                className.push('h-5.5')
+                break;
+            case 'sm':
+                className.push('h-7')
+                break;
+            case 'md':
+            default:
+                className.push('h-8.5')
+                break;
+            case 'lg':
+                className.push('h-10')
+                break;
+        }
     }
 
 
