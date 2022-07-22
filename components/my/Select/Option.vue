@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 16:44:57
- * @LastEditTime: 2022-07-21 22:28:06
+ * @LastEditTime: 2022-07-22 10:39:22
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\Select\Option.vue
@@ -43,10 +43,10 @@ const optionClass = computed(() => {
             break;
         case 'md':
         default:
-            className.push('text-base px-3 py-1.25')
+            className.push('text-base px-2.5 py-1.25')
             break;
         case 'lg':
-            className.push('text-lg px-4 py-1.5')
+            className.push('text-lg px-3 py-1.5')
             break;
     }
 

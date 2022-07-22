@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 11:57:24
- * @LastEditTime: 2022-07-21 22:26:46
+ * @LastEditTime: 2022-07-22 10:52:23
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\Select\Index.vue
@@ -10,12 +10,12 @@
 <template>
     <div ref="selectEl" class="mySelect" :class="useClass">
         <div class="mySelect__input" :class="inputClass" @click="showOptions = !showOptions">
-            <div class="flex-1 truncate">
+            <div class="flex flex-1 truncate">
                 <template v-if="multiple">
-                    <span v-for="item in showText">{{ item }}x </span>
+                    <MySelectSelectedItem v-for="item in showValues" :item="item" />
                 </template>
-                <template>
-                    {{ showText }}
+                <template v-else>
+                    {{ showValues[0].label }}
                 </template>
             </div>
             <div class="flex-shrink-0 i-ri-arrow-down-s-line"> </div>
@@ -71,9 +71,6 @@ const props = defineProps({
 
 })
 
-provide('clearStyle', props.clearStyle)
-provide('size', props.size)
-
 const emits = defineEmits([
     'update:modelValue'
 ])
@@ -83,21 +80,24 @@ const showOptions = ref(false)  // 是否显示下拉菜单
 const values = computed(() => { // 已选值, 统一按array处理
     return Array.isArray(props.modelValue) ? JSON.parse(JSON.stringify(props.modelValue)) : [props.modelValue]
 })
-provide('values', values)
 
-const showText = computed(() => {
-    if (props.multiple) {
-        const currentOptions = values.value.reduce((total, item) => {
-            const option = props.options.find(that => that.value === item)
-            if (option && option.label) {
-                total.push(option.label)
-            }
-            return total
-        }, [])
-        return currentOptions
-    }
-    const currentOption = props.options.find(item => item.value === props.modelValue)
-    return currentOption ? (currentOption?.label || '') : ''
+provide('clearStyle', props.clearStyle)
+provide('size', props.size)
+provide('values', values)
+// 把更新方法传下去, 方便子组件更新
+provide('update:modelValue', (val) => {
+    emits('update:modelValue', val)
+})
+
+// 文本域显示的内容
+const showValues = computed(() => {
+    return values.value.reduce((total, val) => {
+        const option = props.options.find(opt => opt.value === val)
+        if (option) {
+            total.push(option)
+        }
+        return total
+    }, [])
 })
 
 // 监听下拉菜单状态, 展开后绑定关闭事件.
@@ -113,10 +113,6 @@ const handleClose = (e) => {
     if (!selectEl.value.contains(e.target)) {
         showOptions.value = false
     }
-}
-
-const handleChange = (e) => {
-    emits('update:modelValue', e.target.value)
 }
 
 // 容器样式
@@ -153,10 +149,10 @@ const inputClass = computed(() => {
             break;
         case 'md':
         default:
-            className.push('h-8.5 text-base px-3')
+            className.push('h-8.5 text-base px-2.5')
             break;
         case 'lg':
-            className.push('h-10 text-lg px-4')
+            className.push('h-10 text-lg px-3')
             break;
     }
 
