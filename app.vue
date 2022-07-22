@@ -2,23 +2,22 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-05 19:44:31
- * @LastEditTime: 2022-07-12 17:14:32
+ * @LastEditTime: 2022-07-20 16:25:49
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\app.vue
 -->
 <template>
-    <main class="h-full">
-        <template v-if="auth.loaded">
-            <NuxtLayout>
-                <NuxtPage />
-            </NuxtLayout>
-
-        </template>
-        <template v-else>
-            loading
-        </template>
-    </main>
+    <template v-if="auth.loaded">
+        <NuxtLayout>
+            <NuxtPage />
+        </NuxtLayout>
+    </template>
+    <template v-else>
+        loading
+    </template>
+    <div id="drawer"></div>
+    <div id="dialog"></div>
 </template>
 <script setup>
 const auth = useAuth()
@@ -31,6 +30,6 @@ const auth = useAuth()
 html,
 body,
 #__nuxt {
-    @apply bg-neutral-50 h-full text-neutral-600;
+    @apply bg-neutral-50 h-full overflow-hidden text-neutral-600;
 }
 </style>

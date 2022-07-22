@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 15:07:40
- * @LastEditTime: 2022-07-13 10:31:21
+ * @LastEditTime: 2022-07-18 21:16:34
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\index.vue
@@ -25,7 +25,6 @@
   </div>
 </template>
 <script setup>
-
 </script>
 <script>
 export default {
