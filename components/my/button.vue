@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:42:41
- * @LastEditTime: 2022-07-21 15:45:47
+ * @LastEditTime: 2022-07-22 10:20:44
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\components\my\button.vue
+ * @FilePath: \ezAdmin3\components\my\Button.vue
 -->
 <template>
     <button class="myButton" :class="useClass" :disabled="props.disabled">
@@ -158,10 +158,10 @@ const useClass = computed(() => {
             break;
         case 'md':
         default:
-            className.push('text-base px-3 py-2 h-8.5')
+            className.push('text-base px-2.5 py-2 h-8.5')
             break;
         case 'lg':
-            className.push('text-lg px-4 py-2.5 h-10')
+            className.push('text-lg px-3 py-2.5 h-10')
             break;
     }
 

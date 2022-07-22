@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:05:14
- * @LastEditTime: 2022-07-21 15:43:23
+ * @LastEditTime: 2022-07-22 10:21:36
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\components\my\input.vue
+ * @FilePath: \ezAdmin3\components\my\Input.vue
 -->
 <template>
     <div class="myInput flex items-center" :class="useClass">
@@ -201,10 +201,10 @@ const inputClass = computed(() => {
             break;
         case 'md':
         default:
-            className.push('text-base px-3 py-1.375')
+            className.push('text-base px-2.5 py-1.375')
             break;
         case 'lg':
-            className.push('text-lg px-4 py-1.75')
+            className.push('text-lg px-3 py-1.75')
             break;
     }
 
@@ -256,10 +256,10 @@ const eyeClassName = computed(() => {
             break;
         case 'md':
         default:
-            className.push('text-base mr-3')
+            className.push('text-base mr-2.5')
             break;
         case 'lg':
-            className.push('text-lg mr-4')
+            className.push('text-lg mr-3')
             break;
     }
 
