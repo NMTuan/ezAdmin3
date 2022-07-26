@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 11:57:24
- * @LastEditTime: 2022-07-22 10:52:23
+ * @LastEditTime: 2022-07-26 10:10:15
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\Select\Index.vue
@@ -15,7 +15,7 @@
                     <MySelectSelectedItem v-for="item in showValues" :item="item" />
                 </template>
                 <template v-else>
-                    {{ showValues[0].label }}
+                    {{ showValues[0]?.label }}
                 </template>
             </div>
             <div class="flex-shrink-0 i-ri-arrow-down-s-line"> </div>
