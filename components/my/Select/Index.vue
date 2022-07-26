@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 11:57:24
- * @LastEditTime: 2022-07-26 10:10:15
+ * @LastEditTime: 2022-07-26 16:00:25
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\Select\Index.vue
@@ -86,8 +86,19 @@ provide('size', props.size)
 provide('values', values)
 // 把更新方法传下去, 方便子组件更新
 provide('update:modelValue', (val) => {
-    emits('update:modelValue', val)
+    updateModelValue(val)
 })
+
+const onChange = inject('on:change')
+
+// 更新
+const updateModelValue = (val) => {
+    emits('update:modelValue', val)
+    if (typeof onChange === 'function') {
+        onChange()
+    }
+}
+
 
 // 文本域显示的内容
 const showValues = computed(() => {
@@ -245,11 +256,11 @@ const selectOption = (option) => {
         } else {
             values.value.push(option.value)
         }
-        emits('update:modelValue', values.value)
+        updateModelValue(values.value)
         return
     }
     // 单选
-    emits('update:modelValue', option.value)
+    updateModelValue(option.value)
     showOptions.value = false
 }
 

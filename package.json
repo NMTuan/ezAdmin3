@@ -16,6 +16,7 @@
         "@pinia/nuxt": "^0.3.0",
         "@unocss/transformer-directives": "^0.43.2",
         "@victorioberra/trianglify-browser": "^4.1.1",
+        "async-validator": "^4.2.5",
         "normalize.css": "^8.0.1",
         "pinia": "^2.0.14",
         "sass": "^1.53.0",

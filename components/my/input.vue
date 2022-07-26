@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:05:14
- * @LastEditTime: 2022-07-22 10:21:36
+ * @LastEditTime: 2022-07-26 14:45:33
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\components\my\Input.vue
+ * @FilePath: \ezAdmin3\components\my\input.vue
 -->
 <template>
     <div class="myInput flex items-center" :class="useClass">
@@ -20,7 +20,7 @@
 
         <!-- 其它 -->
         <input v-else class="myInput__input" :class='inputClass' autocomplete="off" v-bind="$attrs" :type="type"
-            :value="modelValue" @input="updateVal" />
+            :value="modelValue" @input="updateVal" @blur="handleBlur" />
 
         <!-- 密码框的眼睛 -->
         <div v-if="props.type === 'password' && props.showPassword" class="cursor-pointer" :class="eyeClassName"
@@ -268,6 +268,14 @@ const eyeClassName = computed(() => {
 // 切换显示密码
 const changeShowPassword = () => {
     type.value = type.value === 'password' ? 'text' : 'password'
+}
+
+// 处理blur
+const onBlur = inject('on:blur')
+const handleBlur = () => {
+    if (typeof onBlur === 'function') {
+        onBlur()
+    }
 }
 
 </script>

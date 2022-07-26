@@ -2,23 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-26 09:32:42
- * @LastEditTime: 2022-07-26 10:43:27
+ * @LastEditTime: 2022-07-26 17:16:22
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\form\Index.vue
 -->
 <template>
     <div>
-
-        <template v-for="field in fields" :is="componentName(field.type)">
-            {{ field.label }}
-            <template v-if="field.type === 'select'">
-                <MySelect :options="field.options" v-model="data[field.field]"></MySelect>
-            </template>
-            <template v-else>
-                <MyInput v-model="data[field.field]"></MyInput>
-            </template>
-        </template>
+        <MyFormItem :item="field" v-for="field in fields" />
         <p>组件内的值</p>
         <pre>[data]: {{ data }}</pre>
         <p>要更新到组件外</p>
@@ -41,6 +32,9 @@ const emits = defineEmits([
 ])
 
 const data = ref({})    // 组件内的表单数据集
+provide('data', data)
+
+// 表单数据初始化
 data.value = props.fields.reduce((total, item) => {
     total[item.field] = props.formData[item.field] || ''
     return total
@@ -57,6 +51,24 @@ watch(data, (val) => {
     emits('update:formData', val)
 }, {
     immediate: true
+})
+
+const validates = []   // 表单项的验证方法.
+provide('addField', (field) => {
+    if (field) {
+        validates.push(field)
+    }
+})
+
+// 整体表单验证的方法.
+const validate = () => {
+    validates.map(item => {
+        item.validate()
+    })
+}
+
+defineExpose({
+    validate
 })
 
 </script>
