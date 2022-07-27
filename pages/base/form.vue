@@ -2,21 +2,17 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 09:36:18
- * @LastEditTime: 2022-07-27 11:48:32
+ * @LastEditTime: 2022-07-27 17:31:53
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\base\form.vue
 -->
 <template>
-    <LayoutContainer class="flex">
-        <MyForm ref="formEl" v-model:formData="formData" :fields="fields" />
-        <MyButton @click="submit">提交</MyButton>
-        <div>
-            组件外改变值, 要更新到组件内.
-            <!-- <MyInput v-model="formData.username" /> -->
-            <pre>[formData]: {{ formData }}</pre>
+    <LayoutContainer>
+        <div class="flex">
+            <MyForm ref="formEl" v-model:formData="formData" :fields="fields" inline />
+            <MyButton @click="submit">提交</MyButton>
         </div>
-
     </LayoutContainer>
 </template>
 <script setup lang="ts">

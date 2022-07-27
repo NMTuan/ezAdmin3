@@ -1,10 +1,16 @@
 <template>
-    <div>
-        <span v-if="isRequired" class="text-red-400">*</span>
-        {{ item.label }}
-        <component :is="componentName" :item="item" />
-        <div v-if="validateError" class="text-red-400">
-            {{ validateMsg }}
+    <div class="mySelect__item" :class="useClass">
+        <div class="mySelect__label" :class="labelClass" :style="labelStyle">
+            <span v-if="isRequired" class="text-red-400">*</span>
+            {{ item.label }}
+        </div>
+        <div>
+            <component :is="componentName" :item="item" />
+            <div class="text-red-400 text-sm pt-1 h-6">
+                <span v-if="validateError">
+                    {{ validateMsg }}
+                </span>
+            </div>
         </div>
     </div>
 </template>
@@ -16,7 +22,10 @@ const props = defineProps({
         default: () => ({})
     }
 })
+const formProps = inject('formProps')
 const data = inject('data')
+
+console.log(formProps.labelPosition)
 
 // 组件名字
 const componentName = computed(() => {
@@ -99,5 +108,46 @@ if (addField) {
     addField({ validate: validate })
 }
 
+
+const useClass = computed(() => {
+    const className = []
+    className.push('leading-none')
+    className.push('mb-2')
+
+    if (formProps.inline) {
+        className.push('flex')
+        className.push('mr-2')
+
+    } else {
+        if (['left', 'right'].includes(formProps.labelPosition)) {
+            className.push('flex')
+        }
+        if (formProps.labelPosition === 'right') {
+            className.push('text-right')
+        }
+    }
+
+
+
+    return className
+})
+
+const labelClass = computed(() => {
+    const className = []
+
+    className.push('mr-2')
+    className.push('leading-8.5')
+    className.push('flex-shrink-0')
+
+    return className
+})
+const labelStyle = computed(() => {
+    const styles = {}
+    if (['left', 'right'].includes(formProps.labelPosition) && !formProps.inline) {
+        styles.width = formProps.labelWidth
+    }
+
+    return styles
+})
 
 </script>

@@ -2,18 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-26 09:32:42
- * @LastEditTime: 2022-07-27 11:47:08
+ * @LastEditTime: 2022-07-27 17:29:21
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\form\Index.vue
 -->
 <template>
-    <div>
+    <div class="myForm" :class="useClass">
         <MyFormItem :item="field" v-for="field in fields" />
-        <p>组件内的值</p>
-        <pre>[data]: {{ data }}</pre>
-        <p>要更新到组件外</p>
-        <pre>[formData]: {{ formData }}</pre>
     </div>
 </template>
 <script setup lang="ts">
@@ -25,8 +21,22 @@ const props = defineProps({
     fields: {
         type: Array,
         default: () => []
+    },
+    inline: {
+        type: Boolean,
+        default: false
+    },
+    labelPosition: {
+        type: String,
+        default: 'top'
+    },
+    labelWidth: {
+        type: String,
+        default: '120px'
     }
 })
+provide('formProps', props) // 把整个配置项都传下去
+
 const emits = defineEmits([
     'update:formData'
 ])
@@ -75,8 +85,20 @@ const validate = (callback = (error, fields) => { }) => {
     callback(error, errorFields)
 }
 
+const useClass = computed(() => {
+    const className = []
+
+    if (props.inline) {
+        className.push('flex flex-wrap')
+    }
+    return className
+})
+
+// 暴露方法
 defineExpose({
     validate
 })
+
+
 
 </script>
