@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 09:36:18
- * @LastEditTime: 2022-07-26 17:52:01
+ * @LastEditTime: 2022-07-27 11:48:32
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\base\form.vue
@@ -21,7 +21,7 @@
 </template>
 <script setup lang="ts">
 const formData = ref({
-    username: "张三"
+    // username: "张三"
 })
 const fields = [
     {
@@ -72,8 +72,11 @@ const fields = [
 const formEl = ref(null)
 
 const submit = () => {
-    formEl.value.validate((errors, fields) => {
-
+    formEl.value.validate((error, fields) => {
+        if (error) {
+            return
+        }
+        console.log('submit')
     })
 }
 </script>

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-26 09:32:42
- * @LastEditTime: 2022-07-26 17:16:22
+ * @LastEditTime: 2022-07-27 11:47:08
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\form\Index.vue
@@ -61,10 +61,18 @@ provide('addField', (field) => {
 })
 
 // 整体表单验证的方法.
-const validate = () => {
-    validates.map(item => {
-        item.validate()
-    })
+const validate = (callback = (error, fields) => { }) => {
+    let error = false
+    let errorFields = {}
+    for (let i = 0; i < validates.length; i++) {
+        validates[i].validate('', (errorMsg, fields) => {
+            if (errorMsg) {
+                error = true
+                errorFields = Object.assign(errorFields, fields)
+            }
+        })
+    }
+    callback(error, errorFields)
 }
 
 defineExpose({

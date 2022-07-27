@@ -49,7 +49,7 @@ provide('on:change', () => {
 })
 
 // 表单验证
-const validate = async (trigger) => {
+const validate = async (trigger, callback = (errorMsg, fields) => { }) => {
     // 找到当前触发类型下的所有验证规则
     let currentRules = []
     if (!trigger) {
@@ -69,6 +69,7 @@ const validate = async (trigger) => {
 
     // 没有验证规则的直接回调
     if (!currentRules || currentRules.length === 0) {
+        callback()
         return
     }
 
@@ -82,13 +83,14 @@ const validate = async (trigger) => {
 
     const validator = new Schema({ [props.item.field]: descriptor });
 
-
     validator.validate({
         [props.item.field]: data.value[props.item.field]
     }, { firstFields: true }, (errors, fields) => {
         validateError.value = !!errors
         validateMsg.value = errors?.[0].message || ''
+        callback(validateMsg.value, fields)
     })
+
 }
 
 // 把当前组件加到父组件中. 用于表单提交的验证
