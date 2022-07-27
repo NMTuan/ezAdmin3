@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 11:57:24
- * @LastEditTime: 2022-07-26 16:00:25
+ * @LastEditTime: 2022-07-27 17:01:02
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\components\my\Select\Index.vue
+ * @FilePath: \ezAdmin3\components\my\select\Index.vue
 -->
 <template>
-    <div ref="selectEl" class="mySelect" :class="useClass">
+    <div ref="selectEl" class="mySelect" :class="useClass" :style="useStyle">
         <div class="mySelect__input" :class="inputClass" @click="showOptions = !showOptions">
             <div class="flex flex-1 truncate">
                 <template v-if="multiple">
@@ -68,6 +68,10 @@ const props = defineProps({
             ].includes(value)
         }
     },
+    minWidth: {
+        type: String,
+        default: '150px'
+    }
 
 })
 
@@ -136,6 +140,11 @@ const useClass = computed(() => {
     }
 
     return className
+})
+const useStyle = computed(() => {
+    const styles = {}
+    styles.minWidth = props.minWidth
+    return styles
 })
 
 // 文本区域样式

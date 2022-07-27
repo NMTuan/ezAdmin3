@@ -2,25 +2,25 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:05:14
- * @LastEditTime: 2022-07-26 14:45:33
+ * @LastEditTime: 2022-07-27 17:26:45
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\input.vue
 -->
 <template>
-    <div class="myInput flex items-center" :class="useClass">
+    <div class="myInput flex items-center" :class="useClass" :style="useStyle" v-bind="$attrs">
 
         <!-- 文本域 -->
         <textarea v-if="type === 'textarea'" class="myInput__textarea" :class='inputClass' autocomplete="off"
-            v-bind="$attrs" :value="modelValue" @input="updateVal" />
+            :value="modelValue" @input="updateVal" />
 
         <!-- 密码框 -->
         <input v-else-if="type === 'password'" type="password" class="myInput__input" :class='inputClass'
-            autocomplete="off" v-bind="$attrs" :value="modelValue" @input="updateVal" />
+            autocomplete="off" :value="modelValue" @input="updateVal" size="1" />
 
         <!-- 其它 -->
-        <input v-else class="myInput__input" :class='inputClass' autocomplete="off" v-bind="$attrs" :type="type"
-            :value="modelValue" @input="updateVal" @blur="handleBlur" />
+        <input v-else class="myInput__input" :class='inputClass' autocomplete="off" :type="type" :value="modelValue"
+            @input="updateVal" @blur="handleBlur" style="min-width: 10px;" size="1" />
 
         <!-- 密码框的眼睛 -->
         <div v-if="props.type === 'password' && props.showPassword" class="cursor-pointer" :class="eyeClassName"
@@ -31,6 +31,10 @@
 
 <script setup lang="ts">
 const props = defineProps({
+    minWidth: {
+        type: String,
+        default: '150px'
+    },
     modelValue: {
         type: [String, Number],
         default: ''
@@ -176,6 +180,11 @@ const useClass = computed(() => {
 
 
     return className
+})
+const useStyle = computed(() => {
+    const styles = {}
+    styles.minWidth = props.minWidth
+    return styles
 })
 
 // input元素
