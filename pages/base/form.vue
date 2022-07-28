@@ -2,17 +2,15 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 09:36:18
- * @LastEditTime: 2022-07-27 17:31:53
+ * @LastEditTime: 2022-07-28 10:12:21
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\base\form.vue
 -->
 <template>
     <LayoutContainer>
-        <div class="flex">
-            <MyForm ref="formEl" v-model:formData="formData" :fields="fields" inline />
-            <MyButton @click="submit">提交</MyButton>
-        </div>
+        <MyForm ref="formEl" v-model:formData="formData" :fields="fields" />
+        <MyButton @click="submit">提交</MyButton>
     </LayoutContainer>
 </template>
 <script setup lang="ts">
