@@ -2,20 +2,20 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 11:57:24
- * @LastEditTime: 2022-07-22 10:52:23
+ * @LastEditTime: 2022-07-27 17:01:02
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\components\my\Select\Index.vue
+ * @FilePath: \ezAdmin3\components\my\select\Index.vue
 -->
 <template>
-    <div ref="selectEl" class="mySelect" :class="useClass">
+    <div ref="selectEl" class="mySelect" :class="useClass" :style="useStyle">
         <div class="mySelect__input" :class="inputClass" @click="showOptions = !showOptions">
             <div class="flex flex-1 truncate">
                 <template v-if="multiple">
                     <MySelectSelectedItem v-for="item in showValues" :item="item" />
                 </template>
                 <template v-else>
-                    {{ showValues[0].label }}
+                    {{ showValues[0]?.label }}
                 </template>
             </div>
             <div class="flex-shrink-0 i-ri-arrow-down-s-line"> </div>
@@ -68,6 +68,10 @@ const props = defineProps({
             ].includes(value)
         }
     },
+    minWidth: {
+        type: String,
+        default: '150px'
+    }
 
 })
 
@@ -86,8 +90,19 @@ provide('size', props.size)
 provide('values', values)
 // 把更新方法传下去, 方便子组件更新
 provide('update:modelValue', (val) => {
-    emits('update:modelValue', val)
+    updateModelValue(val)
 })
+
+const onChange = inject('on:change')
+
+// 更新
+const updateModelValue = (val) => {
+    emits('update:modelValue', val)
+    if (typeof onChange === 'function') {
+        onChange()
+    }
+}
+
 
 // 文本域显示的内容
 const showValues = computed(() => {
@@ -125,6 +140,11 @@ const useClass = computed(() => {
     }
 
     return className
+})
+const useStyle = computed(() => {
+    const styles = {}
+    styles.minWidth = props.minWidth
+    return styles
 })
 
 // 文本区域样式
@@ -245,11 +265,11 @@ const selectOption = (option) => {
         } else {
             values.value.push(option.value)
         }
-        emits('update:modelValue', values.value)
+        updateModelValue(values.value)
         return
     }
     // 单选
-    emits('update:modelValue', option.value)
+    updateModelValue(option.value)
     showOptions.value = false
 }
 

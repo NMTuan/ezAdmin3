@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-17 17:11:30
- * @LastEditTime: 2022-07-08 10:27:37
+ * @LastEditTime: 2022-07-26 09:26:55
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\middleware\auth.global.ts
@@ -85,6 +85,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
                     if (process.client) {
                         alert('登录超时')
                     }
+                    auth.clearUserInfo()
                     navigateTo({ name: 'login' })
                 }
             })
