@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-19 16:55:29
- * @LastEditTime: 2022-07-20 17:22:33
+ * @LastEditTime: 2022-08-01 18:00:35
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\drawer\index.vue
@@ -28,8 +28,13 @@
                     </div>
                     <div class="flex-1 overflow-hidden">
                         <Simplebar>
-                            <slot></slot>
+                            <div class="p-4">
+                                <slot></slot>
+                            </div>
                         </Simplebar>
+                    </div>
+                    <div v-if="$slots.foot">
+                        <slot name="foot"></slot>
                     </div>
                 </div>
             </transition>
@@ -143,6 +148,12 @@ const closeAndReload = () => {
         reload: true
     })
 }
+
+// 暴露方法
+defineExpose({
+    close,
+    closeAndReload
+})
 
 </script>
 <style lang="scss" scoped>
