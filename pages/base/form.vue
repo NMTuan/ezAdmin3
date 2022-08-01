@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 09:36:18
- * @LastEditTime: 2022-07-28 10:12:21
+ * @LastEditTime: 2022-08-01 17:03:54
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\base\form.vue
 -->
 <template>
     <LayoutContainer>
-        <MyForm ref="formEl" v-model:formData="formData" :fields="fields" />
+        <MyForm ref="formEl" v-model="formData" :fields="fields" />
         <MyButton @click="submit">提交</MyButton>
     </LayoutContainer>
 </template>
