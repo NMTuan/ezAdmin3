@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 15:50:05
- * @LastEditTime: 2022-08-02 16:53:28
+ * @LastEditTime: 2022-08-02 17:13:09
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\adv\table.vue
@@ -29,7 +29,7 @@ const fields = [
     { label: 'Office', field: 'office' },
     { label: 'Age', field: 'age' },
     { label: 'Salary', field: 'salary' },
-    { label: 'CreatedAt', field: 'date_created' },
+    // { label: 'CreatedAt', field: 'date_created' },
 
 ]
 

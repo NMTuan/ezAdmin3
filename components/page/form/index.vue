@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-08-01 16:37:39
- * @LastEditTime: 2022-08-02 15:54:55
+ * @LastEditTime: 2022-08-02 17:49:46
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\page\form\index.vue
@@ -49,12 +49,21 @@ const props = defineProps({
     submitApi: {
         type: Function,
         default: null
+    },
+    fetchApi: {
+        type: Function,
+        default: null
+    },
+    fetchPayload: {
+        type: Function,
+        default: null
     }
 })
 const emits = defineEmits([
     'update:modelValue'
 ])
 watch(() => props.modelValue, (val) => {
+    console.log('[watch]', typeof val, val)
     emits('update:modelValue', val)
 })
 const formEl = ref(null)
@@ -67,6 +76,25 @@ const layoutComponent = computed(() => {
     return resolveComponent('LayoutDrawer')
 })
 
+// 拉取表单数据
+if (typeof props.fetchApi === 'function') {
+    let payload = {}
+    if (typeof props.fetchPayload === 'function') {
+        payload = Object.assign({}, payload, props.fetchPayload())
+    }
+
+    const res = await props.fetchApi(payload)
+    if (unref(res.error) === null) {
+        const data = unref(res.data).data
+        props.fields.forEach((field) => {
+            if (typeof data[field.field] !== 'undefined') {
+                props.modelValue[field.field] = data[field.field]
+            }
+        })
+    }
+}
+
+// 点击操作按钮
 const handleClick = (item) => {
     // 如果有自定义方法, 则执行自定义方法, 否则按action执行.
     if (typeof item.handleClick === 'function') {
@@ -85,6 +113,7 @@ const handleClick = (item) => {
     }
 }
 
+// 提交表单
 const submit = () => {
     formEl.value.validate(async (error, fields) => {
         if (error) {
@@ -102,6 +131,8 @@ const submit = () => {
         layoutEl.value.closeAndReload()
     })
 }
+
+// 取消表单(后退)
 const cancel = () => {
     console.log(layoutEl)
     layoutEl.value.close()

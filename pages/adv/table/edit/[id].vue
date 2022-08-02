@@ -2,20 +2,26 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 16:15:35
- * @LastEditTime: 2022-08-02 15:48:57
+ * @LastEditTime: 2022-08-02 17:50:46
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\pages\adv\table\create\index.vue
+ * @FilePath: \ezAdmin3\pages\adv\table\edit\[id].vue
 -->
 <template>
-    <PageForm :title="title" v-model="formData" :fields="fields" :actions="actions" :submitApi="submitApi">
+    <PageForm :title="title" v-model="formData" :fields="fields" :actions="actions" :submitApi="submitApi"
+        :fetchApi="fetchApi" :fetchPayload="fetchPayload">
     </PageForm>
 </template>
 <script setup>
 const api = useApi()
+const route = useRoute()
 const title = 'Create Item'
 const formData = ref({})
 const fields = [
+    {
+        label: 'Id', field: 'id',
+        rules: [{ required: true, message: 'required' }]
+    },
     {
         label: 'Name', field: 'name',
         rules: [{ required: true, message: 'required' }]
@@ -62,6 +68,13 @@ const actions = [
     }
 ]
 const submitApi = api.table.create
+const fetchApi = api.table.fetchItem
+const fetchPayload = () => {
+    return {
+        id: route.params.id
+    }
+}
+
 </script>
 <script>
 export default {
