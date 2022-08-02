@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 11:57:24
- * @LastEditTime: 2022-07-27 17:01:02
+ * @LastEditTime: 2022-08-02 15:30:03
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\select\Index.vue
@@ -18,7 +18,9 @@
                     {{ showValues[0]?.label }}
                 </template>
             </div>
-            <div class="flex-shrink-0 i-ri-arrow-down-s-line"> </div>
+
+            <div v-if="loading" class="flex-shrink-0 i-ri-loader-4-line text-neutral-200" animate-spin> </div>
+            <div v-else class="flex-shrink-0 i-ri-arrow-down-s-line"> </div>
         </div>
         <div class="mySelect__Options" :class="optionsClass" v-if="showOptions">
             <MySelectOption v-for="option in options" :option="option" @click="selectOption(option)" />
@@ -34,6 +36,10 @@ const props = defineProps({
     options: {
         type: Array,
         default: () => []
+    },
+    fetchOptions: {
+        type: Function,
+        default: null
     },
     multiple: {
         type: Boolean,
@@ -79,7 +85,10 @@ const emits = defineEmits([
     'update:modelValue'
 ])
 
+
+const loading = ref(false)
 const selectEl = ref(null)  // 容器
+const options = ref([])
 const showOptions = ref(false)  // 是否显示下拉菜单
 const values = computed(() => { // 已选值, 统一按array处理
     return Array.isArray(props.modelValue) ? JSON.parse(JSON.stringify(props.modelValue)) : [props.modelValue]
@@ -103,11 +112,10 @@ const updateModelValue = (val) => {
     }
 }
 
-
 // 文本域显示的内容
 const showValues = computed(() => {
     return values.value.reduce((total, val) => {
-        const option = props.options.find(opt => opt.value === val)
+        const option = options.value.find(opt => opt.value === val)
         if (option) {
             total.push(option)
         }
@@ -273,5 +281,13 @@ const selectOption = (option) => {
     showOptions.value = false
 }
 
+// 处理options
+if (typeof props.fetchOptions === 'function') {
+    loading.value = true
+    options.value = await props.fetchOptions()
+    loading.value = false
+} else {
+    options.value = props.options
+}
 
 </script>
