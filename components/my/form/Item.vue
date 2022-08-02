@@ -25,8 +25,6 @@ const props = defineProps({
 const formProps = inject('formProps')
 const data = inject('data')
 
-console.log(formProps.labelPosition)
-
 // 组件名字
 const componentName = computed(() => {
     if (props.item.type === 'select') {
