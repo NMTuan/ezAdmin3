@@ -2,13 +2,16 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-08-01 16:37:39
- * @LastEditTime: 2022-08-01 17:59:18
+ * @LastEditTime: 2022-08-02 14:34:35
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\page\form\index.vue
 -->
 <template>
-    <component :is="layoutComponent" :title="title">
+    <component :is="layoutComponent" :title="title" ref="layoutEl">
+        <div>
+            loading: {{ loading }}
+        </div>
         <MyForm ref="formEl" v-model="modelValue" :fields="fields"></MyForm>
         <pre>modelValue: {{ modelValue }}</pre>
         <p v-for="i in 30">{{ i }}</p>
@@ -42,6 +45,10 @@ const props = defineProps({
     actions: {
         type: Array,
         default: () => ([])
+    },
+    submitApi: {
+        type: Function,
+        default: null
     }
 })
 const emits = defineEmits([
@@ -51,6 +58,8 @@ watch(() => props.modelValue, (val) => {
     emits('update:modelValue', val)
 })
 const formEl = ref(null)
+const layoutEl = ref(null)
+const loading = ref(false)
 const layoutComponent = computed(() => {
     if (props.layout === 'dialog') {
         return resolveComponent('LayoutDialog')
@@ -59,30 +68,43 @@ const layoutComponent = computed(() => {
 })
 
 const handleClick = (item) => {
+    // 如果有自定义方法, 则执行自定义方法, 否则按action执行.
     if (typeof item.handleClick === 'function') {
         item.handleClick()
         return
     }
     const action = item.action || 'submit'
+    console.log('action', action)
     switch (action) {
         case 'submit':
             submit()
             break
-        case 'reset':
-            break
         case 'cancel':
+            cancel()
             break
     }
 }
 
 const submit = () => {
-    formEl.value.validate((error, fields) => {
+    formEl.value.validate(async (error, fields) => {
         if (error) {
             return
         }
-        console.log('submit')
+        loading.value = true
+        if (typeof props.submitApi !== 'function') {
+            return
+        }
+        const res = await props.submitApi(props.modelValue)
+        if (unref(res.error) !== null) {
+            console.log('[error]', unref(res.error).message)
+            return
+        }
+        console.log('res', res)
+        layoutEl.value.closeAndReload()
     })
 }
-const reset = () => { }
-const cancel = () => { }
+const cancel = () => {
+    console.log(layoutEl)
+    layoutEl.value.close()
+}
 </script>

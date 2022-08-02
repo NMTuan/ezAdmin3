@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-19 16:07:49
- * @LastEditTime: 2022-07-05 21:35:06
+ * @LastEditTime: 2022-08-02 14:27:49
  * @LastEditors: NMTuan
  * @Description: 异步处理配置
  * @FilePath: \ezAdmin3\composables\useApiFetch.ts
@@ -26,6 +26,7 @@ export default async (url, options) => {
                 response.status,
                 response._data
             )
+            alert(JSON.stringify(response._data.errors, null, 2))
         }
     }
 
