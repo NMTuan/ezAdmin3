@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-08-01 16:37:39
- * @LastEditTime: 2022-08-02 14:34:35
+ * @LastEditTime: 2022-08-02 15:54:55
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\page\form\index.vue
@@ -13,12 +13,12 @@
             loading: {{ loading }}
         </div>
         <MyForm ref="formEl" v-model="modelValue" :fields="fields"></MyForm>
-        <pre>modelValue: {{ modelValue }}</pre>
-        <p v-for="i in 30">{{ i }}</p>
         <template #foot>
-            <MyButton v-for="action in actions" @click="handleClick(action)">
-                {{ action.label }}
-            </MyButton>
+            <div class="p-4">
+                <MyButton v-for="action in actions" @click="handleClick(action)">
+                    {{ action.label }}
+                </MyButton>
+            </div>
         </template>
     </component>
 </template>
@@ -99,7 +99,6 @@ const submit = () => {
             console.log('[error]', unref(res.error).message)
             return
         }
-        console.log('res', res)
         layoutEl.value.closeAndReload()
     })
 }

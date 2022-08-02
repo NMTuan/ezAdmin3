@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-18 22:31:07
- * @LastEditTime: 2022-08-02 11:08:22
+ * @LastEditTime: 2022-08-02 15:54:10
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\composables\useApi\table.ts
@@ -13,7 +13,8 @@ export default {
             method: 'get',
             params: {
                 ...params,
-                meta: '*'
+                meta: '*',
+                sort: '-id'
             }
         })
     },

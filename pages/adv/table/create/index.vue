@@ -2,17 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 16:15:35
- * @LastEditTime: 2022-08-02 11:56:21
+ * @LastEditTime: 2022-08-02 15:48:57
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\adv\table\create\index.vue
 -->
 <template>
-    <div>
-        <PageForm :title="title" v-model="formData" :fields="fields" :actions="actions" :submitApi="submitApi">
-        </PageForm>
-        <pre>formData: {{ formData }}</pre>
-    </div>
+    <PageForm :title="title" v-model="formData" :fields="fields" :actions="actions" :submitApi="submitApi">
+    </PageForm>
 </template>
 <script setup>
 const api = useApi()
@@ -25,11 +22,24 @@ const fields = [
     },
     {
         label: 'Position', field: 'position',
-        type: 'select',
         rules: [{ required: false, message: 'required' }]
     },
     {
         label: 'Office', field: 'office',
+        type: 'select',
+        fetchOptions: async () => {
+            const res = await api.office.fetch()
+            if (unref(res.error) !== null) {
+                return []
+            }
+            return unref(res.data).data.reduce((total, item) => {
+                total.push({
+                    label: item.name,
+                    value: item.name
+                })
+                return total
+            }, [])
+        },
         rules: [{ required: true, message: 'required' }]
     },
     {
@@ -39,26 +49,7 @@ const fields = [
     {
         label: 'Salary', field: 'salary',
         rules: [{ required: true, message: 'required' }]
-    },
-
-    // {
-    //     label: '用户名', field: 'username',
-    //     rules: [
-    //         {
-    //             required: true,
-    //             message: '必填',
-    //         },
-    //         {
-    //             validator(rule, value, callback) {
-    //                 if (value.length < 5) {
-    //                     callback(new Error('需大于4个字'))
-    //                 } else {
-    //                     callback()
-    //                 }
-    //             },
-    //         }
-    //     ]
-    // },
+    }
 ]
 const actions = [
     {
