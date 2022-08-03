@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-08 15:05:14
- * @LastEditTime: 2022-07-27 17:26:45
+ * @LastEditTime: 2022-08-03 11:18:49
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\input.vue
@@ -12,15 +12,15 @@
 
         <!-- 文本域 -->
         <textarea v-if="type === 'textarea'" class="myInput__textarea" :class='inputClass' autocomplete="off"
-            :value="modelValue" @input="updateVal" />
+            :value="modelValue" @input="updateVal" :disabled="disabled" />
 
         <!-- 密码框 -->
         <input v-else-if="type === 'password'" type="password" class="myInput__input" :class='inputClass'
-            autocomplete="off" :value="modelValue" @input="updateVal" size="1" />
+            autocomplete="off" :value="modelValue" @input="updateVal" size="1" :disabled="disabled" />
 
         <!-- 其它 -->
         <input v-else class="myInput__input" :class='inputClass' autocomplete="off" :type="type" :value="modelValue"
-            @input="updateVal" @blur="handleBlur" style="min-width: 10px;" size="1" />
+            @input="updateVal" @blur="handleBlur" style="min-width: 10px;" size="1" :disabled="disabled" />
 
         <!-- 密码框的眼睛 -->
         <div v-if="props.type === 'password' && props.showPassword" class="cursor-pointer" :class="eyeClassName"
@@ -95,6 +95,10 @@ const props = defineProps({
         }
     },
     showPassword: {
+        type: Boolean,
+        default: false
+    },
+    disabled: {
         type: Boolean,
         default: false
     }
@@ -239,6 +243,9 @@ const inputClass = computed(() => {
             className.push('placeholder-neutral-300 text-neutral-500')
     }
 
+    if (props.disabled) {
+        className.push('cursor-not-allowed op-30')
+    }
 
     return className
 })
