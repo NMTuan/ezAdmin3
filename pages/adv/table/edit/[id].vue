@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 16:15:35
- * @LastEditTime: 2022-08-02 17:50:46
+ * @LastEditTime: 2022-08-03 11:20:10
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\adv\table\edit\[id].vue
@@ -20,6 +20,8 @@ const formData = ref({})
 const fields = [
     {
         label: 'Id', field: 'id',
+        disabled: true,
+        hidden: true,
         rules: [{ required: true, message: 'required' }]
     },
     {
@@ -67,7 +69,7 @@ const actions = [
         action: 'cancel'
     }
 ]
-const submitApi = api.table.create
+const submitApi = api.table.updateItem
 const fetchApi = api.table.fetchItem
 const fetchPayload = () => {
     return {

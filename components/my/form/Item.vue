@@ -1,5 +1,5 @@
 <template>
-    <div class="mySelect__item" :class="useClass">
+    <div class="mySelect__item" :class="useClass" v-if="!item.hidden">
         <div class="mySelect__label" :class="labelClass" :style="labelStyle">
             <span v-if="isRequired" class="text-red-400">*</span>
             {{ item.label }}
