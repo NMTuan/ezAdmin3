@@ -1,5 +1,5 @@
 <template>
-    <div class="mySelect__item" :class="useClass">
+    <div class="mySelect__item" :class="useClass" v-if="!item.hidden">
         <div class="mySelect__label" :class="labelClass" :style="labelStyle">
             <span v-if="isRequired" class="text-red-400">*</span>
             {{ item.label }}
@@ -24,8 +24,6 @@ const props = defineProps({
 })
 const formProps = inject('formProps')
 const data = inject('data')
-
-console.log(formProps.labelPosition)
 
 // 组件名字
 const componentName = computed(() => {

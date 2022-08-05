@@ -14,7 +14,7 @@
 </template>
 <script setup lang="ts">
 const props = defineProps({
-    formData: {
+    modelValue: {
         type: Object,
         default: () => ({})
     },
@@ -38,7 +38,7 @@ const props = defineProps({
 provide('formProps', props) // 把整个配置项都传下去
 
 const emits = defineEmits([
-    'update:formData'
+    'update:modelValue'
 ])
 
 const data = ref({})    // 组件内的表单数据集
@@ -46,19 +46,19 @@ provide('data', data)
 
 // 表单数据初始化
 data.value = props.fields.reduce((total, item) => {
-    total[item.field] = props.formData[item.field] || ''
+    total[item.field] = props.modelValue[item.field] || ''
     return total
 }, {})
 
 // 监听组件外的变动. 更新到组件内
-watch(props.formData, (val) => {
+watch(props.modelValue, (val) => {
     console.log(val)
     data.value = Object.assign(data.value, val)
 })
 
 // 监听组件内的变动, 更新到组件外
 watch(data, (val) => {
-    emits('update:formData', val)
+    emits('update:modelValue', val)
 }, {
     immediate: true
 })

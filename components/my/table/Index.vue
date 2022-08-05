@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 09:35:22
- * @LastEditTime: 2022-07-21 11:47:53
+ * @LastEditTime: 2022-08-02 16:27:14
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \ezAdmin3\components\my\table.vue
+ * @FilePath: \ezAdmin3\components\my\table\Index.vue
 -->
 <template>
     <div>
@@ -29,7 +29,12 @@
                 <tr v-for="row in props.data">
                     <td v-for="field in props.fields" :class="tdClass">
                         <div :class="cellClass">
-                            {{ row[field.field] }}
+                            <template v-if="field.type === 'action'">
+                                <MyTableCellAction :field="field" :row="row" />
+                            </template>
+                            <template v-else>
+                                {{ row[field.field] }}
+                            </template>
                         </div>
                     </td>
                 </tr>
