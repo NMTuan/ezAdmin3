@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-19 16:07:49
- * @LastEditTime: 2022-08-02 14:27:49
+ * @LastEditTime: 2022-08-05 17:10:45
  * @LastEditors: NMTuan
  * @Description: 异步处理配置
  * @FilePath: \ezAdmin3\composables\useApiFetch.ts
  */
 
-export default async (url, options) => {
+export default (url, options) => {
     const auth = useAuth()
     const config = useRuntimeConfig()
     const params = {
@@ -43,6 +43,20 @@ export default async (url, options) => {
     //     ...params,
     //     ...options
     // })
+    if (options.lazy) {
+        delete options.lazy
+        return useLazyAsyncData(
+            url,
+            () =>
+                $fetch(url, {
+                    ...params,
+                    ...options
+                }),
+            {
+                initialCache: false // 禁止参数缓存, 默认开启. 开启时, 相同参数的请求不会发第二次.
+            }
+        )
+    }
     return useAsyncData(
         url,
         () =>

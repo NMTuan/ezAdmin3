@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 11:57:33
- * @LastEditTime: 2022-08-02 15:29:34
+ * @LastEditTime: 2022-08-05 17:49:48
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\base\select.vue
@@ -46,7 +46,7 @@
             <MySelect size="lg" :options='options' v-model='multipleSelected' multiple />
         </div>
         <div>
-            <MySelect :fetchOptions="fetchOptions" v-model="office">
+            <MySelect :fetchOptions="fetchOptions" :handleFetchOptionsRes="handleFetchOptionsRes" v-model="office">
 
             </MySelect>
         </div>
@@ -66,19 +66,26 @@ const options = ref([
     { label: '未知', value: 0 },
 ])
 const office = ref('')
-const fetchOptions = async () => {
-    const res = await api.office.fetch()
-    if (unref(res.error) !== null) {
-        return []
+const fetchOptions = api.office.fetch
+const handleFetchOptionsRes = (item) => {
+    return {
+        label: item.name,
+        value: item.name
     }
-    return unref(res.data).data.reduce((total, item) => {
-        total.push({
-            label: item.name,
-            value: item.name
-        })
-        return total
-    }, [])
 }
+// const fetchOptions = async () => {
+//     const res = await api.office.fetch()
+//     if (unref(res.error) !== null) {
+//         return []
+//     }
+//     return unref(res.data).data.reduce((total, item) => {
+//         total.push({
+//             label: item.name,
+//             value: item.name
+//         })
+//         return total
+//     }, [])
+// }
 </script>
 <script>
 export default {

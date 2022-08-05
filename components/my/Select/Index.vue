@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-21 11:57:24
- * @LastEditTime: 2022-08-02 15:30:03
+ * @LastEditTime: 2022-08-05 17:45:25
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\select\Index.vue
@@ -19,7 +19,7 @@
                 </template>
             </div>
 
-            <div v-if="loading" class="flex-shrink-0 i-ri-loader-4-line text-neutral-200" animate-spin> </div>
+            <div v-if="pending" class="flex-shrink-0 i-ri-loader-4-line text-neutral-200" animate-spin> </div>
             <div v-else class="flex-shrink-0 i-ri-arrow-down-s-line"> </div>
         </div>
         <div class="mySelect__Options" :class="optionsClass" v-if="showOptions">
@@ -38,6 +38,10 @@ const props = defineProps({
         default: () => []
     },
     fetchOptions: {
+        type: Function,
+        default: null
+    },
+    handleFetchOptionsRes: {
         type: Function,
         default: null
     },
@@ -86,7 +90,6 @@ const emits = defineEmits([
 ])
 
 
-const loading = ref(false)
 const selectEl = ref(null)  // 容器
 const options = ref([])
 const showOptions = ref(false)  // 是否显示下拉菜单
@@ -282,10 +285,37 @@ const selectOption = (option) => {
 }
 
 // 处理options
+// if (typeof props.fetchOptions === 'function') {
+//     loading.value = true
+//     options.value = await props.fetchOptions()
+//     loading.value = false
+// } else {
+//     options.value = props.options
+// }
+
+let pending
+
+const handleFetchOptions = (data) => {
+    console.log('[handleFetchOptions]', data)
+    options.value = data.reduce((total, item) => {
+        if (typeof props.handleFetchOptionsRes === 'function') {
+            total.push(props.handleFetchOptionsRes(item))
+        } else {
+            total.push({
+                label: item.label,
+                value: item.value
+            })
+        }
+        return total
+    }, [])
+}
+
 if (typeof props.fetchOptions === 'function') {
-    loading.value = true
-    options.value = await props.fetchOptions()
-    loading.value = false
+    const res = props.fetchOptions()
+    pending = res.pending
+    watch(res.data, (val) => {
+        handleFetchOptions(val.data)
+    })
 } else {
     options.value = props.options
 }
