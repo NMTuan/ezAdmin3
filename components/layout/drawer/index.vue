@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-19 16:55:29
- * @LastEditTime: 2022-08-01 18:00:35
+ * @LastEditTime: 2022-08-04 16:32:35
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\layout\drawer\index.vue
@@ -33,7 +33,7 @@
                             </div>
                         </Simplebar>
                     </div>
-                    <div v-if="$slots.foot">
+                    <div v-if="$slots.foot" class="p-4">
                         <slot name="foot"></slot>
                     </div>
                 </div>
@@ -183,25 +183,25 @@ defineExpose({
 
 .rtl-enter-from,
 .rtl-leave-to {
-    transform: translateX(100%);
+    transform: translateX(10%);
     opacity: 0;
 }
 
 .ltr-enter-from,
 .ltr-leave-to {
-    transform: translateX(-100%);
+    transform: translateX(-10%);
     opacity: 0;
 }
 
 .ttb-enter-from,
 .ttb-leave-to {
-    transform: translateY(-100%);
+    transform: translateY(-10%);
     opacity: 0;
 }
 
 .btt-enter-from,
 .btt-leave-to {
-    transform: translateY(100%);
+    transform: translateY(10%);
     opacity: 0;
 }
 </style>
