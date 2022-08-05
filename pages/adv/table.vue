@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 15:50:05
- * @LastEditTime: 2022-08-02 17:13:09
+ * @LastEditTime: 2022-08-05 11:02:42
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\adv\table.vue
@@ -19,9 +19,9 @@ const fields = [
     {
         label: 'Actions', type: 'action',
         actionItems: [
-            { label: 'detail' },
+            // { label: 'detail' },
             { label: 'edit', toName: 'adv-table-edit-id', payload: ({ row }) => ({ id: row.id }) },
-            { label: 'remove', toName: '' },
+            { label: 'remove', toName: 'adv-table-remove-id', payload: ({ row }) => ({ id: row.id }) },
         ]
     },
     { label: 'Name', field: 'name' },
@@ -29,14 +29,12 @@ const fields = [
     { label: 'Office', field: 'office' },
     { label: 'Age', field: 'age' },
     { label: 'Salary', field: 'salary' },
-    // { label: 'CreatedAt', field: 'date_created' },
+    { label: 'CreatedAt', field: 'date_created' },
 
 ]
 
 const actions = [
     { label: 'create', toName: 'adv-table-create' },
-    { label: 'edit' },
-    { label: 'delete' }
 ]
 
 const fetchApi = api.table.fetch

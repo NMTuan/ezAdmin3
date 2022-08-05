@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 16:15:35
- * @LastEditTime: 2022-08-03 11:20:10
+ * @LastEditTime: 2022-08-04 16:34:02
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\adv\table\edit\[id].vue
@@ -81,7 +81,7 @@ const fetchPayload = () => {
 <script>
 export default {
     page: {
-        name: 'Create'
+        name: 'Edit'
     }
 }
 </script>

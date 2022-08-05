@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-08-01 16:37:39
- * @LastEditTime: 2022-08-02 17:49:46
+ * @LastEditTime: 2022-08-04 16:31:49
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\page\form\index.vue
@@ -14,11 +14,9 @@
         </div>
         <MyForm ref="formEl" v-model="modelValue" :fields="fields"></MyForm>
         <template #foot>
-            <div class="p-4">
-                <MyButton v-for="action in actions" @click="handleClick(action)">
-                    {{ action.label }}
-                </MyButton>
-            </div>
+            <MyButton v-for="action in actions" @click="handleClick(action)">
+                {{ action.label }}
+            </MyButton>
         </template>
     </component>
 </template>
@@ -63,7 +61,6 @@ const emits = defineEmits([
     'update:modelValue'
 ])
 watch(() => props.modelValue, (val) => {
-    console.log('[watch]', typeof val, val)
     emits('update:modelValue', val)
 })
 const formEl = ref(null)
