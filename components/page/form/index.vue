@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-08-01 16:37:39
- * @LastEditTime: 2022-08-08 11:34:56
+ * @LastEditTime: 2022-08-08 16:39:39
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\page\form\index.vue
@@ -87,15 +87,18 @@ if (typeof props.fetchApi === 'function') {
         payload = Object.assign({}, payload, props.fetchPayload())
     }
 
-    const res = await props.fetchApi(payload)
-    if (unref(res.error) === null) {
-        const data = unref(res.data).data
+    const { pending, data } = props.fetchApi(payload)
+    watchEffect(() => {
+        loading.value = pending.value
+        if (data.value === null) {
+            return
+        }
         props.fields.forEach((field) => {
-            if (typeof data[field.field] !== 'undefined') {
-                props.modelValue[field.field] = data[field.field]
+            if (typeof data.value.data[field.field] !== 'undefined') {
+                props.modelValue[field.field] = data.value.data[field.field]
             }
         })
-    }
+    })
 }
 
 // 点击操作按钮
@@ -123,16 +126,18 @@ const submit = () => {
         if (error) {
             return
         }
-        loading.value = true
         if (typeof props.submitApi !== 'function') {
             return
         }
-        const res = await props.submitApi(props.modelValue)
-        if (unref(res.error) !== null) {
-            console.log('[error]', unref(res.error).message)
-            return
-        }
-        layoutEl.value.closeAndReload()
+        const { pending, data } = props.submitApi(props.modelValue)
+        watchEffect(() => {
+            loading.value = pending.value
+        })
+        watch(data, () => {
+            if (data.value !== null) {
+                layoutEl.value.closeAndReload()
+            }
+        })
     })
 }
 
