@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-26 09:32:42
- * @LastEditTime: 2022-07-27 17:29:21
+ * @LastEditTime: 2022-08-08 11:33:58
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\my\form\Index.vue
@@ -59,8 +59,10 @@ watch(props.modelValue, (val) => {
 // 监听组件内的变动, 更新到组件外
 watch(data, (val) => {
     emits('update:modelValue', val)
+
 }, {
-    immediate: true
+    deep: true
+    // immediate: true
 })
 
 const validates = []   // 表单项的验证方法.

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-08-01 16:37:39
- * @LastEditTime: 2022-08-04 16:31:49
+ * @LastEditTime: 2022-08-08 11:34:56
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\page\form\index.vue
@@ -12,7 +12,7 @@
         <div>
             loading: {{ loading }}
         </div>
-        <MyForm ref="formEl" v-model="modelValue" :fields="fields"></MyForm>
+        <MyForm ref="formEl" v-model="formData" :fields="fields"></MyForm>
         <template #foot>
             <MyButton v-for="action in actions" @click="handleClick(action)">
                 {{ action.label }}
@@ -60,9 +60,16 @@ const props = defineProps({
 const emits = defineEmits([
     'update:modelValue'
 ])
-watch(() => props.modelValue, (val) => {
-    emits('update:modelValue', val)
+// 这里用计算属性中转一下, 直接v-model:modelValue有问题.
+const formData = computed({
+    get: () => {
+        return props.modelValue
+    },
+    set: (val) => {
+        emits('update:modelValue', val)
+    }
 })
+
 const formEl = ref(null)
 const layoutEl = ref(null)
 const loading = ref(false)
