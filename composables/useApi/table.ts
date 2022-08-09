@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-18 22:31:07
- * @LastEditTime: 2022-08-09 10:27:02
+ * @LastEditTime: 2022-08-09 11:07:49
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\composables\useApi\table.ts
@@ -37,12 +37,14 @@ export default {
     updateItem: (data) => {
         return useApiFetch(`/items/table/${data.id}`, {
             method: 'PATCH',
+            lazy: true,
             body: data
         })
     },
     removeItem: (data) => {
         return useApiFetch(`/items/table/${data.id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            lazy: true
         })
     }
 }

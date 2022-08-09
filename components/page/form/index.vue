@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-08-01 16:37:39
- * @LastEditTime: 2022-08-08 16:39:39
+ * @LastEditTime: 2022-08-09 10:39:53
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\page\form\index.vue
@@ -122,6 +122,9 @@ const handleClick = (item) => {
 
 // 提交表单
 const submit = () => {
+    if (loading.value) {
+        return
+    }
     formEl.value.validate(async (error, fields) => {
         if (error) {
             return

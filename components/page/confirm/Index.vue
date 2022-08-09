@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-08-04 17:54:46
- * @LastEditTime: 2022-08-05 11:00:54
+ * @LastEditTime: 2022-08-09 11:16:30
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\page\confirm\Index.vue
@@ -37,7 +37,7 @@ const props = defineProps({
 const layoutEl = ref(null)
 const loading = ref(false)
 
-const submit = async () => {
+const submit = () => {
     if (typeof props.submitApi !== 'function') {
         return
     }
@@ -48,13 +48,16 @@ const submit = async () => {
         payload = route.params
     }
 
-    loading.value = true
-    const res = await props.submitApi(payload)
-    loading.value = false
-    if (unref(res.error) !== null) {
-        return
-    }
-    layoutEl.value.closeAndReload()
+    const { pending, data } = props.submitApi(payload)
+    watchEffect(() => {
+        loading.value = pending.value
+    })
+
+    watch(data, (val) => {
+        if (val !== null) {
+            layoutEl.value.closeAndReload()
+        }
+    })
 }
 
 const cancel = () => {

@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-08-03 14:51:41
- * @LastEditTime: 2022-08-05 11:01:06
+ * @LastEditTime: 2022-08-09 11:09:24
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\adv\table\remove\[id].vue
 -->
 <template>
-    <PageConfirm :title="title" :submitApi="submitApi" :submitPayload="submitPayload">
+    <PageConfirm :title="title" :submitApi="submitApi">
         确定要删除此数据么?
     </PageConfirm>
 </template>
