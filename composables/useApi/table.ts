@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-06-18 22:31:07
- * @LastEditTime: 2022-08-08 16:12:50
+ * @LastEditTime: 2022-08-09 10:27:02
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \ezAdmin3\composables\useApi\table.ts
@@ -11,6 +11,7 @@ export default {
     fetch: (params) => {
         return useApiFetch('/items/table', {
             method: 'get',
+            lazy: true,
             params: {
                 ...params,
                 meta: '*',

@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 15:50:05
- * @LastEditTime: 2022-07-20 16:22:48
+ * @LastEditTime: 2022-08-09 10:30:38
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\components\page\table\index.vue
 -->
 <template>
     <LayoutContainer>
-        {{ loading }}
+        loading: {{ loading }}
         <PageTableActions :actions="props.actions" />
         <NuxtPage />
         <MyTable :fields="props.fields" :data="tableData" />
@@ -73,22 +73,24 @@ watch(currentPage, () => {
 })
 
 // 异步获取数据
-const fetchData = async () => {
+const fetchData = () => {
     if (loading.value) {
         return
     }
-    loading.value = true
-    const res = await props.fetchApi({
+    const { pending, data } = props.fetchApi({
         page: currentPage.value,
         limit: limit.value
     })
-    loading.value = false
-    if (unref(res.error)) {
-        return
-    }
-    tableData.value = unref(res.data).data
-    // console.log(JSON.stringify(unref(res.data).data, null, 2))
-    totalCount.value = unref(res.data).meta.total_count
+    watchEffect(() => {
+        loading.value = pending.value
+    })
+    watch(data, (val) => {
+        if (data.value !== null) {
+            tableData.value = unref(data).data
+            totalCount.value = unref(data).meta.total_count
+
+        }
+    })
 }
 
 // 如果没有异步接口, 则渲染data数据

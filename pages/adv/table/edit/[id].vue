@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2022-07-18 16:15:35
- * @LastEditTime: 2022-08-08 16:24:09
+ * @LastEditTime: 2022-08-08 16:43:27
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \ezAdmin3\pages\adv\table\edit\[id].vue
@@ -26,7 +26,7 @@ const fields = [
     },
     {
         label: 'Name', field: 'name',
-        // rules: [{ required: true, message: 'required' }]
+        rules: [{ required: true, message: 'required' }]
     },
     {
         label: 'Position', field: 'position',
@@ -42,19 +42,6 @@ const fields = [
                 value: item.name
             }
         },
-        // fetchOptions: async () => {
-        //     const res = await api.office.fetch()
-        //     if (unref(res.error) !== null) {
-        //         return []
-        //     }
-        //     return unref(res.data).data.reduce((total, item) => {
-        //         total.push({
-        //             label: item.name,
-        //             value: item.name
-        //         })
-        //         return total
-        //     }, [])
-        // },
         rules: [{ required: true, message: 'required' }]
     },
     {
